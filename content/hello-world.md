@@ -3,12 +3,15 @@ slug: hello-world
 title: Hello World
 timestamp: '2024-12-17T17:36:02.446Z'
 top: false
-description: |-
+description: >-
   Table of Contents
+
   Hello World test
-  Welcome to my first post! This is a demonstration of different wa
+
+  Welcome to my first post! This is a demonstration of different ways to say
+  "Hello World" in various programming languages.
 keywords: []
-author: John Doe
+author: Eddie Zhang
 ---
 
 ## Table of Contents

@@ -51,6 +51,17 @@ export function copyPostImages() {
         const targetDir = path.join(process.cwd(), 'public', relativePath);
         const targetPath = path.join(targetDir, file);
 
+        // Skip if the target file already exists and has the same size
+        if (fs.existsSync(targetPath)) {
+          const sourceStats = fs.statSync(sourcePath);
+          const targetStats = fs.statSync(targetPath);
+
+          if (sourceStats.size === targetStats.size) {
+            console.log(`Skipping ${file} - already exists`);
+            return;
+          }
+        }
+
         // Create directory if it doesn't exist
         fs.mkdirSync(targetDir, { recursive: true });
         console.log('created target dir', targetDir);

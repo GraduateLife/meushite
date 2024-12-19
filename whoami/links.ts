@@ -4,3 +4,5 @@ export const linkedinAddress =
 export const githubAddress = 'https://github.com/GraduateLife';
 
 export const domainUrl = 'https://localhost:3000';
+
+export const myName = 'Eddie Zhang';

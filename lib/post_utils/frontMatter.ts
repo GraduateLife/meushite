@@ -7,6 +7,7 @@ import { blogDirName } from './settings';
 import { getAllMdFiles } from './retriever';
 import { capitalizeWords } from '../utils';
 import { cleanMarkdown } from './cleaner';
+import { myName } from '@/whoami/links';
 
 const postsDirectory = path.join(process.cwd(), blogDirName);
 
@@ -26,18 +27,32 @@ function generateTimestamp(): string {
 }
 
 function generateDescription(content: string): string {
-  return cleanMarkdown(content).substring(0, 100);
+  // Clean the markdown and get the first few sentences
+  const cleanText = cleanMarkdown(content);
+  const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
+
+  // Take first 2-3 sentences that total less than 160 chars (good for SEO)
+  let description = '';
+  for (const sentence of sentences) {
+    if (description.length + sentence.length <= 160) {
+      description += sentence.trim() + ' ';
+    } else {
+      break;
+    }
+  }
+
+  return description.trim();
 }
 
 function generateAuthor(content: string): string {
-  return 'John Doe';
+  return myName;
 }
 
 export function updateFrontmatter() {
   const filePaths = getAllMdFiles(postsDirectory);
 
   filePaths.forEach((filePath) => {
-    console.log('update frontmatter at filePath', filePath);
+    console.log('Checking frontmatter at filePath', filePath);
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
 
@@ -47,11 +62,13 @@ export function updateFrontmatter() {
     // Generate slug if not exists
     if (!data.slug) {
       data.slug = slug;
+      console.log('Generated fallback slug for ', filePath);
     }
 
     // Generate title from slug if not exists
     if (!data.title) {
       data.title = generateTitle(slug);
+      console.log('Generated fallback title for ', filePath);
     }
 
     // Add timestamp if not exists
@@ -67,11 +84,13 @@ export function updateFrontmatter() {
     // Add description if not exists
     if (!data.description) {
       data.description = generateDescription(content);
+      console.log('Generated fallback description for ', filePath);
     }
 
     // Add keywords if not exists
     if (!data.keywords) {
       data.keywords = [];
+      console.log('Generated fallback keywords for ', filePath);
     }
 
     // Add author if not exists

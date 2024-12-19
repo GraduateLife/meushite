@@ -21,9 +21,14 @@ function getPostTitle(filePath) {
 }
 
 const changedFile = getLastChangedFile();
-if (changedFile) {
-  const title = getPostTitle(changedFile);
-  console.log(`[post-update]:${title}`);
-} else {
-  console.log('📝 Update blog content');
-}
+// if (changedFile) {
+//   const title = getPostTitle(changedFile);
+//   console.log(`[post-update]:${title}`);
+// } else {
+//   console.log('📝 Update blog content');
+// }
+const title = getPostTitle(changedFile);
+console.log(`[post-update]:${title}`);
+execSync('git add .');
+execSync(`git commit -m "${`[post-update]:${title}`}"`);
+execSync('git push');

@@ -15,7 +15,7 @@
     "md-up": "tsx lib/post_utils/frontMatter.ts",
     "md-localcp": "tsx lib/post_utils/copyImages.ts",
     "md-index": "tsx lib/post_utils/indexer.ts",
-    "md-publish": "git add . && git commit -m \"$(bash will-upload.sh)\" && git push"
+    "md-publish": "git add . && git commit -m \"$(node will-upload.js)\" && git push"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

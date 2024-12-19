@@ -15,16 +15,14 @@ export const metadata: Metadata = {
   description: 'Blogs about my life and thoughts to latest tech',
 };
 
-export default async function BlogIndex({
-  searchParams,
-}: UrlType<undefined, { category?: string }>) {
-  const category = (await searchParams).category;
-  const posts = getAllPosts();
-  const filteredPosts =
-    category === undefined
-      ? posts
-      : posts.filter((post) => post.category && post.category === category);
-  const currentCategory = category || 'all';
+export default async function BlogIndex() {
+  // const category = (await searchParams).category;
+  const posts = await getAllPosts();
+  // const filteredPosts =
+  //   category === undefined
+  //     ? posts
+  //     : posts.filter((post) => post.category && post.category === category);
+  // const currentCategory = category || 'all';
 
   return (
     <div className="flex">
@@ -34,12 +32,12 @@ export default async function BlogIndex({
         <h1 className="text-3xl font-bold mb-8">All Blog Posts</h1>
 
         <div className="space-y-6">
-          {filteredPosts.length === 0 && (
+          {/* {filteredPosts.length === 0 && (
             <div className="text-2xl font-bold flex-1">
               No posts found in this category
             </div>
-          )}
-          {filteredPosts.map((post) => {
+          )} */}
+          {posts.map((post) => {
             return (
               <Link
                 href={`/blogs/${post.slug}`}

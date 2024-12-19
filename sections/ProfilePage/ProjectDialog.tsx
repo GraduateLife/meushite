@@ -133,7 +133,7 @@ const ProjectPopover = ({
                     {imageUrl.map((url, index) => (
                       <CarouselItem key={url}>
                         <AspectRatio ratio={16 / 9}>
-                          <img
+                          <Image
                             src={url}
                             alt={`${title} preview ${index}`}
                             className="absolute inset-0 object-cover w-full h-full"
@@ -149,7 +149,7 @@ const ProjectPopover = ({
               </>
             ) : (
               <AspectRatio ratio={16 / 9}>
-                <img
+                <Image
                   src={imageUrl}
                   alt={`${title} preview`}
                   className="absolute inset-0 object-cover w-full h-full"
@@ -171,7 +171,7 @@ const ProjectPopover = ({
                     variant="secondary"
                     className="flex items-center gap-2"
                   >
-                    <img
+                    <Image
                       width={20}
                       height={20}
                       src={tech.iconUrl}

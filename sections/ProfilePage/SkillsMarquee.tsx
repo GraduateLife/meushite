@@ -10,7 +10,7 @@ import {
   TooltipContent,
   TooltipArrow,
 } from '@radix-ui/react-tooltip';
-
+import Image from 'next/image';
 const [firstRow, secondRow, thirdRow] = into<Skill>(3)(skills);
 
 const SkillCard = ({
@@ -38,7 +38,7 @@ const SkillCard = ({
                   className="rounded-full"
                   width="26"
                   height="26"
-                  alt=""
+                  alt={name}
                   src={imgUrl}
                 />
                 <figcaption className="text-sm font-medium dark:text-white">

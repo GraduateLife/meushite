@@ -28,7 +28,7 @@ const changedFile = getLastChangedFile();
 //   console.log('📝 Update blog content');
 // }
 const title = getPostTitle(changedFile);
-console.log(`[post-update]:${title}`);
+console.log(`Uploading: ${title}`);
 execSync('git add .');
 execSync(`git commit -m "${`[post-update]:${title}`}"`);
 execSync('git push');

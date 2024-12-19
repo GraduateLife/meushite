@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "analyze": "cross-env ANALYZE=true next build",
     "md-preflight": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index",
     "dev": "pnpm run md-preflight && next dev",
     "build": "pnpm run md-preflight && next build",
@@ -21,6 +22,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
+    "@next/bundle-analyzer": "^15.1.2",
     "@next/mdx": "^15.1.0",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.3",

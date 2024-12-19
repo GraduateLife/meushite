@@ -1,0 +1,25 @@
+name: Auto Commit Blog Changes
+
+on:
+  push:
+    paths:
+      - 'content/**' # Add any other relevant directories
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Auto Commit Changes
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-update blog content"
+          git push

@@ -47,7 +47,7 @@ export default async function BlogIndex({
                 className="group"
               >
                 <GlareCard
-                  sizeClassName="w-full h-[120px] my-4"
+                  sizeClassName="w-full min-w-[800px] h-[120px] my-4"
                   className="px-6 py-4"
                 >
                   <div className="flex justify-between items-center">
@@ -59,7 +59,7 @@ export default async function BlogIndex({
                         {post.title}
                       </h2>
 
-                      <p className="text-gray-400 truncate max-w-[800px]">
+                      <p className="text-gray-400 truncate max-w-[700px]">
                         {cleanMarkdown(post.content)}
                       </p>
                       <div className="flex items-center gap-4 mt-2">

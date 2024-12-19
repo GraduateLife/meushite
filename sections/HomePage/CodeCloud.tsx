@@ -33,7 +33,7 @@ export function OrbitingCirclesDemo() {
         delay={7}
         radius={100}
       >
-        <GoodImage src="/Tailwind.png" size="50" />
+        <GoodImage src="/iTailwind.png" size="50" />
       </OrbitingCircles>
       <OrbitingCircles
         className="size-[50px] border-none bg-transparent"

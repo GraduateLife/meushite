@@ -33,7 +33,7 @@ const EshopFrontend: ProjectCardProps = {
     },
     {
       name: 'Tailwind',
-      iconUrl: '/Tailwind.png',
+      iconUrl: '/iTailwind.png',
     },
     {
       name: 'Stripe',

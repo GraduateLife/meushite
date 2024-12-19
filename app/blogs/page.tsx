@@ -8,20 +8,23 @@ import { cleanMarkdown } from '@/lib/post_utils/cleaner';
 import { redirect } from 'next/navigation';
 import { IconCrown, IconTags } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Blogs',
+  description: 'Blogs about my life and thoughts to latest tech',
+};
 
 export default async function BlogIndex({
   searchParams,
-}: {
-  searchParams: { category?: string };
-}) {
+}: UrlType<undefined, { category?: string }>) {
+  const category = (await searchParams).category;
   const posts = getAllPosts();
   const filteredPosts =
-    searchParams.category === undefined
+    category === undefined
       ? posts
-      : posts.filter(
-          (post) => post.category && post.category === searchParams.category
-        );
-  const currentCategory = searchParams.category || 'all';
+      : posts.filter((post) => post.category && post.category === category);
+  const currentCategory = category || 'all';
 
   return (
     <div className="flex">

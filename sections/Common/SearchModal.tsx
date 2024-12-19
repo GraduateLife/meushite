@@ -22,10 +22,11 @@ import {
 import { useSearch } from '@/lib/post_utils/searcher';
 import { If } from '../../components/ui/util/If';
 import { For } from '../../components/ui/util/For';
-import { navLinks } from './NavbarSection';
+
 import { Link } from 'next-view-transitions';
 import { useRouter } from 'next/navigation';
 import { cleanMarkdown } from '@/lib/post_utils/cleaner';
+import { navLinks } from './NavbarLinks';
 
 export default function DialogDemo() {
   const router = useRouter();

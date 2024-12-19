@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "serve": "next start",
+    "serve-q": "pnpm run build && next start",
+    "build:docker": "docker-compose up --build",
+    "serve:docker": "docker run -p 3000:3000 meu-site",
     "lint": "next lint",
     "md-up": "tsx lib/post_utils/frontMatter.ts",
     "md-localcp": "tsx lib/post_utils/copyImages.ts",

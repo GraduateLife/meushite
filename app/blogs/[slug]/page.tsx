@@ -23,6 +23,7 @@ import {
   TooltipArrow,
 } from '@radix-ui/react-tooltip';
 import { Badge } from '@/components/ui/badge';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export async function generateStaticParams() {
   const posts = getAllPosts();
@@ -64,11 +65,9 @@ async function markdownToHtml(content: string) {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const resolvedParams = await params;
-  const post = await getPost(resolvedParams.slug);
+}: UrlType<{ slug: string }, undefined>) {
+  const slug = (await params).slug;
+  const post = await getPost(slug);
 
   return {
     title: post.title,
@@ -94,10 +93,12 @@ export async function generateMetadata({
 }
 
 // Page component
-export default async function Post({ params }: { params: { slug: string } }) {
-  const resolvedParams = await params;
+export default async function Post({
+  params,
+}: UrlType<{ slug: string }, undefined>) {
+  const slug = (await params).slug;
 
-  const post = await getPost(resolvedParams.slug);
+  const post = await getPost(slug);
   const contentHtml = await markdownToHtml(post.content);
 
   return (
@@ -110,13 +111,15 @@ export default async function Post({ params }: { params: { slug: string } }) {
           </div>
         )}
         {post.coverImage && (
-          <Image
-            src={post.coverImage}
-            alt={post.title}
-            className="w-full h-[200px] object-cover"
-            width={1000}
-            height={1000}
-          />
+          <AspectRatio ratio={16 / 9}>
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              className="w-full h-full object-cover"
+              width={1000}
+              height={1000}
+            />
+          </AspectRatio>
         )}
         <article className="prose prose-lg dark:prose-invert prose-slate mx-auto py-6">
           <h1 className="text-6xl font-bold mb-4">{post.title}</h1>

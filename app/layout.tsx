@@ -9,14 +9,10 @@ import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { BackToTop } from '@/sections/Common/BackToTop';
 
 const soraLight = localFont({
-  src: './fonts/Sora-Light.ttf',
+  src: '/fonts/Sora-Light.ttf',
   variable: '--font-sora-light',
+  display: 'swap',
 });
-
-export const metadata: Metadata = {
-  title: `Zhang's Website`,
-  description: '',
-};
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (

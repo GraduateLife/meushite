@@ -3,6 +3,7 @@ import { generateSearchIndex } from './lib/post_utils/indexer';
 import { copyPostImages } from './lib/post_utils/copyImages';
 
 const nextConfig: NextConfig = {
+  output: process.env.DOCKER_BUILD === 'true' ? 'standalone' : undefined,
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   webpack: (config, { isServer }) => {
     // Run only once on the server side
@@ -18,10 +19,6 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'assets.aceternity.com',
-      },
       {
         protocol: 'https',
         hostname: 'api.microlink.io',

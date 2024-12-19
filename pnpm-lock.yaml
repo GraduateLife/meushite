@@ -68,6 +68,9 @@ dependencies:
   cmdk:
     specifier: 1.0.0
     version: registry.npmmirror.com/cmdk@1.0.0(@types/react-dom@18.0.0)(@types/react@18.0.0)(react-dom@19.0.0-rc-02c0e824-20241028)(react@19.0.0-rc-02c0e824-20241028)
+  cross-env:
+    specifier: ^7.0.3
+    version: registry.npmmirror.com/cross-env@7.0.3
   embla-carousel-autoplay:
     specifier: ^8.5.1
     version: registry.npmmirror.com/embla-carousel-autoplay@8.5.1(embla-carousel@8.5.1)
@@ -3168,6 +3171,16 @@ packages:
     version: 3.3.3
     dependencies:
       toggle-selection: registry.npmmirror.com/toggle-selection@1.0.6
+    dev: false
+
+  registry.npmmirror.com/cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cross-env/-/cross-env-7.0.3.tgz}
+    name: cross-env
+    version: 7.0.3
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: registry.npmmirror.com/cross-spawn@7.0.3
     dev: false
 
   registry.npmmirror.com/cross-spawn@7.0.3:

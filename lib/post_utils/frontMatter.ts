@@ -28,20 +28,20 @@ function generateTimestamp(): string {
 
 function generateDescription(content: string): string {
   // Clean the markdown and get the first few sentences
-  const cleanText = cleanMarkdown(content);
-  const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
+  const cleanText = cleanMarkdown(content).substring(0, 160);
+  // const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
 
-  // Take first 2-3 sentences that total less than 160 chars (good for SEO)
-  let description = '';
-  for (const sentence of sentences) {
-    if (description.length + sentence.length <= 160) {
-      description += sentence.trim() + ' ';
-    } else {
-      break;
-    }
-  }
+  // // Take first 2-3 sentences that total less than 160 chars (good for SEO)
+  // let description = '';
+  // for (const sentence of sentences) {
+  //   if (description.length + sentence.length <= 160) {
+  //     description += sentence.trim() + ' ';
+  //   } else {
+  //     break;
+  //   }
+  // }
 
-  return description.trim();
+  return cleanText;
 }
 
 function generateAuthor(content: string): string {

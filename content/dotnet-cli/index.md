@@ -3,8 +3,14 @@ slug: dotnet-cli-cheatsheet
 title: Dotnet Cli Cheat Sheet
 timestamp: '2024-12-20T04:16:33.699Z'
 top: false
-description: ''
-keywords: [snippets, dotnet]
+description: |-
+  I don't like to click, I like to type (your fault, vscode)
+  General workflow like this
+  list all templates provided by microsoft
+  dotnet new list <by template name
+keywords:
+  - snippets
+  - dotnet
 author: Eddie Zhang
 ---
 

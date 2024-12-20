@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ViewTransitions } from 'next-view-transitions';
 import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { BackToTop } from '@/sections/Common/BackToTop';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const soraLight = localFont({
   src: '/fonts/Sora-Light.ttf',
@@ -19,6 +20,7 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
+        <SpeedInsights />
         <Toaster />
         <BackToTop />
       </ThemeProvider>

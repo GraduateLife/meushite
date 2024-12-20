@@ -16,7 +16,7 @@
     "md-up": "tsx lib/post_utils/frontMatter.ts",
     "md-localcp": "tsx lib/post_utils/copyImages.ts",
     "md-index": "tsx lib/post_utils/indexer.ts",
-    "md-publish": "node will-upload.js"
+    "md-edit": "node will-upload.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

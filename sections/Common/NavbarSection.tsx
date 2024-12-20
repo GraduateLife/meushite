@@ -11,6 +11,7 @@ import { FloatingNav } from '@/components/ui/floating-navbar';
 import { DarkModeBtn } from '@/components/providers/DarkModeBtn';
 import DialogDemo from './SearchModal';
 import { navLinks } from './NavbarLinks';
+import useIsOnPC from '@/hooks/useIsOnPC';
 
 export type NavLinkComponent = NavLink & {
   icon: JSX.Element;
@@ -40,13 +41,30 @@ const navLinkComponents: NavLinkComponent[] = navLinks.map((item) => {
 }
 
 export function NavbarSection() {
+  const isOnPc = useIsOnPC();
+  // if (!isOnPc) {
+  //   return (
+  //     <div className="sm-w-[90%] w-full min-w-[400px]">
+  //       <FloatingNav
+  //         navItems={navLinkComponents}
+  //         OtherComponents={
+  //           <>
+  //             <DarkModeBtn />
+  //           </>
+  //         }
+  //       />
+  //     </div>
+  //   );
+  // }
   return (
-    <div className="w-full">
+    <div className="sm-w-[90%] w-full min-w-[400px]">
       <FloatingNav
         navItems={navLinkComponents}
         OtherComponents={
           <>
-            <DialogDemo />
+            <div className="hidden md:inline-flex">
+              <DialogDemo />
+            </div>
             <DarkModeBtn />
           </>
         }

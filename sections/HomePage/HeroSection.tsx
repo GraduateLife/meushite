@@ -25,18 +25,15 @@ const ICanDo = () => {
           .typeString('work with Nextjs')
           .pauseFor(1000)
           .deleteAll()
-          .typeString('mastered Nestjs')
+          .typeString('mastered Nodejs')
           .pauseFor(1000)
           .deleteAll()
-          .typeString('know CI/CD pipeline')
-          .pauseFor(1000)
-          .deleteAll()
-          .typeString('write tests')
+          .typeString('know CI/CD')
           .pauseFor(1000)
           .deleteAll()
           .typeString('am FullSt')
-          .deleteChars(6)
-          .typeString('full-stack capable.')
+          .deleteChars(9)
+          .typeString('make job done.')
           .start();
       }}
     />
@@ -45,7 +42,7 @@ const ICanDo = () => {
 
 export const Story = () => {
   return (
-    <main className="flex flex-col px-4 md:min-h-[700px] justify-between">
+    <main className="flex flex-col px-4  justify-between">
       <div className="w-full">
         <h1 className="text-7xl mb-16">What's up!</h1>
         <section className="my-4 text-2xl" aria-label="Introduction">
@@ -54,8 +51,9 @@ export const Story = () => {
             <span className="dark:text-red-600 text-red-500 text-2xl">Por</span>
             <span className="text-green-600 text-2xl">tugal</span>
             <span>, </span>
-            <div className="inline-flex gap-1">
-              and I <ICanDo />
+            <div className="flex flex-wrap gap-1">
+              <span>and I </span>
+              <ICanDo />
             </div>
           </div>
         </section>

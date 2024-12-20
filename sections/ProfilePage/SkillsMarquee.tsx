@@ -59,7 +59,7 @@ const SkillCard = ({
 
 export function SkillsMarquee() {
   return (
-    <div className="relative flex w-[520px] flex-col py-3 items-center justify-center overflow-hidden rounded-lg  ">
+    <div className="relative flex w-[80vw] max-w-[500px] flex-col py-3 items-center justify-center overflow-hidden rounded-lg  ">
       <Marquee pauseOnHover className="[--duration:20s] pt-6">
         {firstRow.map((sk) => (
           <SkillCard key={sk.name} {...sk} side="top" />

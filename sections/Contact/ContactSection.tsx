@@ -115,7 +115,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="flex flex-wrap">
       <motion.ul
         className="space-y-4"
         variants={container}
@@ -130,7 +130,7 @@ export default function ContactPage() {
         {links.map((link) => (
           <motion.li
             key={link.name}
-            className="flex items-center gap-2"
+            className="flex flex-wrap items-center gap-2"
             variants={item}
           >
             <p className="min-w-[100px]">{link.name}</p>

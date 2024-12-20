@@ -20,7 +20,7 @@ const config = {
       center: true,
       padding: '2rem',
       screens: {
-        sm: '420px',
+        sm: '500px',
         md: '800px',
         xl: '1400px',
       },

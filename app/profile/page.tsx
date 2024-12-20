@@ -10,12 +10,8 @@ export const metadata: Metadata = {
 
 export default () => {
   return (
-    <main
-      className="flex w-[80vw] h-full sm:flex-col xl:flex-row mb-10 "
-      role="main"
-      aria-label="Profile Page"
-    >
-      <div className="flex flex-col flex-1">
+    <>
+      <div className="min-w-[400px]">
         <span className="text-gray-500" role="doc-subtitle">
           meet a normal person
         </span>
@@ -28,23 +24,30 @@ export default () => {
               NickName: <span aria-label="Nickname">Eddie</span>
             </li>
             <li>
-              <div aria-label="Location" className="flex items-center gap-2">
+              <div
+                aria-label="Location"
+                className="flex items-center gap-2 flex-wrap"
+              >
                 Location:{' '}
-                <Image
-                  src={'https://flagcdn.com/cn.svg'}
-                  alt="China"
-                  width={16}
-                  height={16}
-                />
-                <span>Shanghai, China</span>
-                {'/ '}
-                <Image
-                  src={'https://flagcdn.com/pt.svg'}
-                  alt="China"
-                  width={16}
-                  height={16}
-                />
-                <span>Lisbon, Portugal</span>
+                <div className="inline-flex items-center gap-2">
+                  <Image
+                    src={'https://flagcdn.com/cn.svg'}
+                    alt="China"
+                    width={16}
+                    height={16}
+                  />
+                  <span>Shanghai, China</span>
+                  {'/ '}
+                </div>
+                <div className="inline-flex items-center gap-2">
+                  <Image
+                    src={'https://flagcdn.com/pt.svg'}
+                    alt="China"
+                    width={16}
+                    height={16}
+                  />
+                  <span>Lisbon, Portugal</span>
+                </div>
               </div>
             </li>
             <li>
@@ -60,12 +63,11 @@ export default () => {
           </h2>
           <SkillsMarquee aria-label="Skills showcase" />
         </section>
-
-        <section aria-labelledby="education">
+        <section aria-labelledby="education" className="w-[80%]">
           <h2 id="education" className="text-4xl my-6">
             Education
           </h2>
-          <article className="rounded-lg w-[500px] flex justify-between p-2 items-center ">
+          <article className="rounded-lg  flex justify-between p-2 items-center ">
             <div>
               <p className="my-2">University of Manchester</p>
               <p className="my-2">MEng Electronic Engineering</p>
@@ -80,35 +82,31 @@ export default () => {
           </article>
         </section>
       </div>
-      <div>
-        <div className="flex-1">
-          <section aria-labelledby="value-proposition">
-            <h2 id="value-proposition" className="text-4xl mb-3 mt-9">
-              I bring you
-            </h2>
-            <ul className="my-4" aria-label="Professional offerings">
-              <li>
-                Rich experience of Javascript/Typescript on both backend and
-                frontend.
-              </li>
-              <li>
-                Clear understanding on cloud integration and containerization
-                technology.
-              </li>
-              <li>
-                High productivity form my continuous learning and AI power.
-              </li>
-            </ul>
-          </section>
 
-          <section aria-labelledby="projects">
-            <h2 id="projects" className="text-4xl mb-3 mt-9">
-              My Projects
-            </h2>
-            <ProjectShowcase />
-          </section>
-        </div>
+      <div className="min-w-[400px]">
+        <section aria-labelledby="value-proposition" className="w-[80%]">
+          <h2 id="value-proposition" className="text-4xl mb-3 mt-9">
+            I bring you
+          </h2>
+          <ul className="my-4" aria-label="Professional offerings">
+            <li>
+              Rich experience of Javascript/Typescript on both backend and
+              frontend.
+            </li>
+            <li>
+              Clear understanding on cloud integration and containerization
+              technology.
+            </li>
+            <li>High productivity form my continuous learning and AI power.</li>
+          </ul>
+        </section>
+        <section aria-labelledby="projects">
+          <h2 id="projects" className="text-4xl mb-3 mt-9">
+            My Projects
+          </h2>
+          <ProjectShowcase />
+        </section>
       </div>
-    </main>
+    </>
   );
 };

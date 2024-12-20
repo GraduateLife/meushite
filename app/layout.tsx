@@ -37,16 +37,12 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${soraLight.variable}  font-sans dark:bg-black bg-gray-50  dark:bg-dot-white/[0.2] bg-dot-black/[0.6] min-h-screen `}
+          className={`${soraLight.variable}  font-sans dark:bg-black bg-gray-50  dark:bg-dot-white/[0.2] bg-dot-black/[0.6]  w-[100vw] h-[100vh]`}
         >
           <LayoutWrapper>
-            <main className="flex flex-col justify-between">
-              <div className="flex flex-col justify-between items-center ">
-                <div className="min-h-[90vh] pt-24 relative">
-                  <NavbarSection></NavbarSection>
-                  {children}
-                </div>
-              </div>
+            <main className="flex flex-wrap sm:flex-col md:flex-row justify-evenly items-center pt-24 mx-12 relative">
+              <NavbarSection></NavbarSection>
+              {children}
             </main>
             <footer className="text-center">
               <span>© 2024 by Eddie with ❤️</span>

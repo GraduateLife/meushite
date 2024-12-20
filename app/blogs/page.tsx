@@ -25,10 +25,10 @@ export default async function BlogIndex() {
   // const currentCategory = category || 'all';
 
   return (
-    <div className="flex">
+    <div className="flex flex-col ">
       {/* <BlogSidebar posts={posts} currentCategory={currentCategory} /> */}
       {/* Main content */}
-      <main className="flex-1 px-8 py-8">
+      <main className="">
         <h1 className="text-3xl font-bold mb-8">All Blog Posts</h1>
 
         <div className="space-y-6">
@@ -45,7 +45,7 @@ export default async function BlogIndex() {
                 className="group"
               >
                 <GlareCard
-                  sizeClassName="w-full min-w-[800px] h-[120px] my-4"
+                  sizeClassName="w-[320px] md:w-[800px] h-[180px] md:h-[120px] my-4"
                   className="px-6 py-4"
                 >
                   <div className="flex justify-between items-center">
@@ -54,33 +54,37 @@ export default async function BlogIndex() {
                         {post.top && (
                           <IconCrown className="w-8 h-8 fill-yellow-500 stroke-yellow-500 inline-block" />
                         )}
-                        {post.title}
+                        <p className="truncate max-w-[250px]">{post.title}</p>
                       </h2>
 
-                      <p className="text-gray-400 truncate max-w-[700px]">
+                      <p className="text-gray-400 truncate max-w-[280px] md:max-w-[700px]">
                         {cleanMarkdown(post.content)}
                       </p>
-                      <div className="flex items-center gap-4 mt-2">
-                        {post.author && (
-                          <div className="text-gray-400 italic">
-                            by {post.author}
-                          </div>
-                        )}
-                        {post.keywords && post.keywords.length > 0 && (
-                          <div className="flex items-center gap-2">
-                            <IconTags className="w-5 h-5 text-gray-400" />
-                            <div className="flex gap-2">
-                              {post.keywords.map((keyword) => (
-                                <Badge
-                                  className="text-xs bg-gray-700 text-gray-200"
-                                  key={keyword}
-                                >
-                                  {keyword}
-                                </Badge>
-                              ))}
+                      <div className="flex gap-4 mt-2 flex-wrap">
+                        <div>
+                          {post.author && (
+                            <div className="text-gray-400 italic">
+                              by {post.author}
                             </div>
-                          </div>
-                        )}
+                          )}
+                        </div>
+                        <div>
+                          {post.keywords && post.keywords.length > 0 && (
+                            <div className="flex flex-wrap items-center gap-2">
+                              <IconTags className="w-5 h-5 text-gray-400" />
+                              <div className="flex gap-2 flex-wrap">
+                                {post.keywords.map((keyword) => (
+                                  <Badge
+                                    className="text-xs bg-gray-700 text-gray-200"
+                                    key={keyword}
+                                  >
+                                    {keyword}
+                                  </Badge>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </article>
                   </div>

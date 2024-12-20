@@ -9,6 +9,7 @@ import {
 import { cn } from '@/lib/utils';
 
 import { Link } from 'next-view-transitions';
+import useIsOnPC from '@/hooks/useIsOnPC';
 
 export const FloatingNav = ({
   navItems,
@@ -26,8 +27,12 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
+  const isOnPC = useIsOnPC();
 
   useEffect(() => {
+    if (!isOnPC) {
+      setVisible(true);
+    }
     const handleMouseMove = (event: MouseEvent) => {
       if (event.clientY < 100) {
         // Show when mouse is within 100px from top
@@ -72,8 +77,7 @@ export const FloatingNav = ({
         }}
         className={cn(
           'flex max-w-fit gap-x-4 fixed top-10 inset-x-0 mx-auto border border-transparent dark:border-white/[0.2] rounded-full dark:bg-black/50 bg-white/50 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] pr-2 pl-8 py-2  items-center justify-center space-x-4',
-          className,
-          'px-12'
+          className
         )}
       >
         {navItems.map((navItem: any, idx: number) => (

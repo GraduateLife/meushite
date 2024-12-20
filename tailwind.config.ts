@@ -13,7 +13,6 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './sections/**/*.{ts,tsx}',
-    './data/**/*.{ts,tsx}',
   ],
   prefix: '',
   theme: {

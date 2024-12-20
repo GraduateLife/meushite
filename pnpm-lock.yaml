@@ -170,9 +170,6 @@ dependencies:
   unified:
     specifier: ^11.0.5
     version: registry.npmmirror.com/unified@11.0.5
-  unist-util-visit:
-    specifier: ^5.0.0
-    version: registry.npmmirror.com/unist-util-visit@5.0.0
   zod:
     specifier: ^3.24.1
     version: registry.npmmirror.com/zod@3.24.1

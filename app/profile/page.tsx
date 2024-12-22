@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default () => {
   return (
     <>
-      <div className="min-w-[400px]">
+      <div className="min-w-[400px] flex flex-col ">
         <span className="text-gray-500" role="doc-subtitle">
           meet a normal person
         </span>
@@ -20,15 +20,13 @@ export default () => {
             Basic information
           </h2>
           <ul className="my-4" aria-label="Personal details">
-            <li>
-              NickName: <span aria-label="Nickname">Eddie</span>
+            <li className="flex items-center gap-2">
+              <span>NickName: </span>
+              <span aria-label="Nickname">Eddie</span>
             </li>
             <li>
-              <div
-                aria-label="Location"
-                className="flex items-center gap-2 flex-wrap"
-              >
-                Location:{' '}
+              <div aria-label="Location" className="flex gap-2 flex-wrap">
+                <span>Location:</span>
                 <div className="inline-flex items-center gap-2">
                   <Image
                     src={'https://flagcdn.com/cn.svg'}
@@ -51,7 +49,7 @@ export default () => {
               </div>
             </li>
             <li>
-              Experience:{' '}
+              <span>Experience:</span>
               <span aria-label="Years of experience">3 years +</span>
             </li>
           </ul>
@@ -63,7 +61,7 @@ export default () => {
           </h2>
           <SkillsMarquee aria-label="Skills showcase" />
         </section>
-        <section aria-labelledby="education" className="w-[80%]">
+        <section aria-labelledby="education" className="flex-basis-1">
           <h2 id="education" className="text-4xl my-6">
             Education
           </h2>
@@ -84,7 +82,7 @@ export default () => {
       </div>
 
       <div className="min-w-[400px]">
-        <section aria-labelledby="value-proposition" className="w-[80%]">
+        <section aria-labelledby="value-proposition">
           <h2 id="value-proposition" className="text-4xl mb-3 mt-9">
             I bring you
           </h2>

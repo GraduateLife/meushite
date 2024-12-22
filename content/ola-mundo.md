@@ -12,6 +12,7 @@ keywords:
   - markdown
   - sample
 author: John Doe
+coverImage: /Sockio.png
 ---
 
 # Olá Mundo! (Hello World!)

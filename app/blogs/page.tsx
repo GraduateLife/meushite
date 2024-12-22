@@ -45,7 +45,7 @@ export default async function BlogIndex() {
                 className="group"
               >
                 <GlareCard
-                  sizeClassName="w-[320px] md:w-[800px] h-[180px] md:h-[120px] my-4"
+                  sizeClassName="w-[360px] md:w-[800px] h-[180px] md:h-[120px] my-4"
                   className="px-6 py-4"
                 >
                   <div className="flex justify-between items-center">
@@ -54,7 +54,9 @@ export default async function BlogIndex() {
                         {post.top && (
                           <IconCrown className="w-8 h-8 fill-yellow-500 stroke-yellow-500 inline-block" />
                         )}
-                        <p className="truncate max-w-[250px]">{post.title}</p>
+                        <p className="truncate max-w-[250px] md:max-w-[500px]">
+                          {post.title}
+                        </p>
                       </h2>
 
                       <p className="text-gray-400 truncate max-w-[280px] md:max-w-[700px]">

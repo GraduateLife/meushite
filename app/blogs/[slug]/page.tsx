@@ -103,27 +103,16 @@ export default async function Post({
 
   return (
     <DisableViewTransitions>
-      <main className="max-w-[80vw] min-w-[50vw] mx-auto px-16 py-4 bg-gray-200/70 dark:bg-gray-900/70 rounded-lg">
+      <main className="max-w-[80vw] min-w-[50vw] px-4 md:px-16 py-4 bg-gray-200/70 dark:bg-gray-900/70 rounded-lg">
         {post.top && (
           <div className="flex items-center gap-2">
             <IconCrown className="w-8 h-8 fill-yellow-500 stroke-yellow-500" />
             <span className="text-2xl font-bold">Top</span>
           </div>
         )}
-        {post.coverImage && (
-          <AspectRatio ratio={16 / 9}>
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              className="w-full h-full object-cover"
-              width={1000}
-              height={1000}
-            />
-          </AspectRatio>
-        )}
-        <article className="prose prose-lg dark:prose-invert prose-slate mx-auto py-6">
-          <h1 className="text-6xl font-bold mb-4">{post.title}</h1>
 
+        <div>
+          <h1 className="text-6xl">{post.title}</h1>
           {/* Author and metadata section */}
           <div className="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-400 mb-8">
             {post.author && (
@@ -148,12 +137,21 @@ export default async function Post({
                 ))}
               </div>
             )}
+            {post.coverImage && (
+              <AspectRatio ratio={16 / 9}>
+                <Image
+                  src={post.coverImage}
+                  alt={post.title}
+                  className="w-full h-full object-cover my-4"
+                  width={1000}
+                  height={1000}
+                />
+              </AspectRatio>
+            )}
           </div>
-
-          <div
-            className="mt-8"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+        </div>
+        <article className="prose dark:prose-invert prose-slate">
+          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </article>
 
         {/* Navigation buttons */}
@@ -196,7 +194,7 @@ const NavigationButtons = ({ post }: { post: Post }) => {
 
   return (
     <>
-      <div className="fixed left-[10vw] top-1/2 -translate-y-1/2">
+      <div className="fixed left-4 md:left-40 top-1/2 -translate-y-1/2 ">
         {prevPost ? (
           <Link href={`/blogs/${prevPost.slug}`}>
             <PostTooltip
@@ -209,7 +207,7 @@ const NavigationButtons = ({ post }: { post: Post }) => {
         )}
       </div>
 
-      <div className="fixed right-[10vw] top-1/2 -translate-y-1/2">
+      <div className="fixed right-4 md:right-40 top-1/2 -translate-y-1/2">
         {nextPost ? (
           <Link href={`/blogs/${nextPost.slug}`}>
             <PostTooltip

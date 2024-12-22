@@ -38,40 +38,38 @@ const ProjectCard = ({
   technologies,
 }: ProjectCardProps) => {
   return (
-    <div className="w-[300px]">
-      <GlareCard
-        className="flex flex-col justify-between relative"
-        sizeClassName="w-full"
-      >
-        {Array.isArray(imageUrl) ? (
-          <div
-            className="w-full h-[70%] bg-cover"
-            style={{ backgroundImage: `url(${imageUrl[0]})` }}
-            role="img"
-            aria-label={`Preview image for ${title}`}
-          />
-        ) : (
-          <div
-            className="w-full h-[70%] bg-cover"
-            style={{ backgroundImage: `url(${imageUrl})` }}
-            role="img"
-            aria-label={`Preview image for ${title}`}
-          />
-        )}
-        <article className="px-6 my-3">
-          <h3 className="font-bold text-white text-lg">{title}</h3>
-          <p className="font-normal text-base text-neutral-200 mt-2">
-            {description}
-          </p>
-          <ul
-            className="flex gap-2 mt-2"
-            aria-label={`Technologies used in ${title}`}
-          >
-            <AvatarGroup urls={technologies.map((tech) => tech.iconUrl)} />
-          </ul>
-        </article>
-      </GlareCard>
-    </div>
+    <GlareCard
+      className="flex flex-col justify-between relative"
+      sizeClassName="w-[360px]"
+    >
+      {Array.isArray(imageUrl) ? (
+        <div
+          className="w-full h-[70%] bg-cover"
+          style={{ backgroundImage: `url(${imageUrl[0]})` }}
+          role="img"
+          aria-label={`Preview image for ${title}`}
+        />
+      ) : (
+        <div
+          className="w-full h-[70%] bg-cover"
+          style={{ backgroundImage: `url(${imageUrl})` }}
+          role="img"
+          aria-label={`Preview image for ${title}`}
+        />
+      )}
+      <article className="px-6 my-3">
+        <h3 className="font-bold text-white text-lg">{title}</h3>
+        <p className="font-normal text-base text-neutral-200 mt-2">
+          {description}
+        </p>
+        <ul
+          className="flex gap-2 mt-2"
+          aria-label={`Technologies used in ${title}`}
+        >
+          <AvatarGroup urls={technologies.map((tech) => tech.iconUrl)} />
+        </ul>
+      </article>
+    </GlareCard>
   );
 };
 
@@ -100,7 +98,7 @@ const ProjectPopover = ({
     });
   }, [api]);
   return (
-    <DialogContent className="max-w-3xl bg-white/85 dark:bg-stone-900/80">
+    <DialogContent className=" bg-white/85 dark:bg-stone-900/80 max-w-[70vw] max-h-[90vh] overflow-y-auto">
       <div className=" flex flex-col gap-6">
         {/* Header Section */}
         <DialogHeader>
@@ -135,6 +133,8 @@ const ProjectPopover = ({
                         <AspectRatio ratio={16 / 9}>
                           <Image
                             src={url}
+                            width={1000}
+                            height={1000}
                             alt={`${title} preview ${index}`}
                             className="absolute inset-0 object-cover w-full h-full"
                           />
@@ -151,6 +151,8 @@ const ProjectPopover = ({
               <AspectRatio ratio={16 / 9}>
                 <Image
                   src={imageUrl}
+                  width={1000}
+                  height={1000}
                   alt={`${title} preview`}
                   className="absolute inset-0 object-cover w-full h-full"
                 />
@@ -275,7 +277,7 @@ const ProjectDialog = ({
 export function ProjectShowcase() {
   return (
     <div
-      className="flex flex-col md:grid md:grid-cols-2 gap-4"
+      className="flex flex-col items-center  md:grid md:grid-cols-2 gap-4"
       role="list"
       aria-label="Project showcase"
     >

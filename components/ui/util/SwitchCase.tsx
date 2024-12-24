@@ -1,7 +1,7 @@
 import React from 'react';
 
 type SwitchProps = {
-  condition: string;
+  by: string;
   children: React.ReactNode;
 };
 
@@ -10,21 +10,21 @@ type CaseProps = {
   children: React.ReactNode;
 };
 
-const Switch = ({ condition, children }: SwitchProps) => {
-  let matchingChild: React.ReactNode | null = null;
-  let defaultCase: React.ReactNode | null = null;
+const Switch = ({ by, children }: SwitchProps) => {
+  let matched: React.ReactNode = null;
+  let defaultCase: React.ReactNode = null;
 
   React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) return;
 
-    if (child.type === Switch.Case && child.props.condition === condition) {
-      matchingChild = child;
+    if (child.type === Switch.Case && child.props.condition === by) {
+      matched = child;
     } else if (child.type === Switch.Default) {
       defaultCase = child;
     }
   });
 
-  return matchingChild || defaultCase;
+  return matched ?? defaultCase;
 };
 
 Switch.Case = ({ children }: CaseProps) => {

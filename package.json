@@ -5,7 +5,7 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=true next build",
     "dev": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && next dev",
-    "build": "pnpm run md-preflight && next build",
+    "build": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && next build",
     "serve": "next start",
     "serve-q": "pnpm run build && next start",
     "dev:docker": "docker compose up -d --build",

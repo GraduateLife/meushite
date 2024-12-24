@@ -48,7 +48,10 @@ export function getAllPosts(): Post[] {
       if (!a.top && b.top) return 1;
 
       // Then sort by timestamp (latest first)
-      return b.timestamp - a.timestamp;
+      // Convert ISO strings to Date objects for comparison
+      const dateA = new Date(a.timestamp);
+      const dateB = new Date(b.timestamp);
+      return dateB.getTime() - dateA.getTime();
     });
 }
 

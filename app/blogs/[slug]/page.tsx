@@ -112,11 +112,11 @@ export default async function Post({
         )}
 
         <div>
-          <h1 className="text-6xl">{post.title}</h1>
+          <h1 className="text-3xl xl:text-6xl">{post.title}</h1>
           {/* Author and metadata section */}
           <div className="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-400 mb-8">
             {post.author && (
-              <div className="flex items-center gap-1">
+              <div className="flex flex-wrap items-center gap-1">
                 <span>Written by {post.author}</span>
                 <span>at</span>
                 <span>

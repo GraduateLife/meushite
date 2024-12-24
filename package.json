@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "analyze": "cross-env ANALYZE=true next build",
-    "md-preflight": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index",
-    "dev": "pnpm run md-preflight && next dev",
+    "dev": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && next dev",
     "build": "pnpm run md-preflight && next build",
     "serve": "next start",
     "serve-q": "pnpm run build && next start",
@@ -16,7 +15,7 @@
     "md-up": "tsx lib/post_utils/frontMatter.ts",
     "md-localcp": "tsx lib/post_utils/copyImages.ts",
     "md-index": "tsx lib/post_utils/indexer.ts",
-    "md-edit": "node will-upload.js"
+    "md-publish": "pnpm run md-localcp && pnpm run md-index && node will-upload.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

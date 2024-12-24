@@ -13,9 +13,12 @@ const postsDirectory = path.join(process.cwd(), blogDirName);
 
 function generateSlug(relativePath: string): string {
   const parsedPath = path.parse(relativePath);
-  return parsedPath.name === 'index'
-    ? path.basename(path.dirname(parsedPath.dir))
-    : parsedPath.name;
+  const slug =
+    parsedPath.name === 'index'
+      ? path.basename(path.dirname(relativePath))
+      : parsedPath.name;
+  console.log('in', slug);
+  return slug;
 }
 
 function generateTitle(slug: string): string {
@@ -27,21 +30,26 @@ function generateTimestamp(): string {
 }
 
 function generateDescription(content: string): string {
-  // Clean the markdown and get the first few sentences
-  const cleanText = cleanMarkdown(content).substring(0, 160);
-  // const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [];
+  // Clean the markdown and get initial text
+  const cleanText = cleanMarkdown(content);
 
-  // // Take first 2-3 sentences that total less than 160 chars (good for SEO)
-  // let description = '';
-  // for (const sentence of sentences) {
-  //   if (description.length + sentence.length <= 160) {
-  //     description += sentence.trim() + ' ';
-  //   } else {
-  //     break;
-  //   }
-  // }
+  // Split by line breaks, list items, or headers
+  const sentences = cleanText.split(
+    /(?:\r?\n|\r){2,}|(?:\r?\n|\r)(?:[-*+]|\d+\.) |(?:\r?\n|\r)#{1,6} /
+  );
 
-  return cleanText;
+  // Take first 2-3 chunks that total less than 160 chars (good for SEO)
+  let description = '';
+  for (const sentence of sentences) {
+    const trimmedSentence = sentence.trim();
+    if (trimmedSentence && description.length + trimmedSentence.length <= 160) {
+      description += (description ? ' ' : '') + trimmedSentence;
+    } else {
+      break;
+    }
+  }
+
+  return description || cleanText.substring(0, 160);
 }
 
 function generateAuthor(content: string): string {

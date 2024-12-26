@@ -9,7 +9,7 @@ import {
 import { cn } from '@/lib/utils';
 
 import { Link } from 'next-view-transitions';
-import useIsOnPC from '@/hooks/useIsOnPC';
+import useIsOnPC from '@/hooks/useIsPC';
 
 export const FloatingNav = ({
   navItems,
@@ -27,11 +27,14 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
+  const isPc = useIsOnPC();
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      if (event.clientY < 100) {
+      if (isPc && event.clientY < 100) {
         // Show when mouse is within 100px from top
+        setVisible(true);
+      } else if (!isPc) {
         setVisible(true);
       }
     };

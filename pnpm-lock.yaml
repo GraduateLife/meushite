@@ -59,6 +59,9 @@ dependencies:
   '@types/mdx':
     specifier: ^2.0.13
     version: registry.npmmirror.com/@types/mdx@2.0.13
+  '@vercel/analytics':
+    specifier: ^1.4.1
+    version: registry.npmmirror.com/@vercel/analytics@1.4.1(next@15.0.2)(react@19.0.0-rc-02c0e824-20241028)
   '@vercel/speed-insights':
     specifier: ^1.1.0
     version: registry.npmmirror.com/@vercel/speed-insights@1.1.0(next@15.0.2)(react@19.0.0-rc-02c0e824-20241028)
@@ -2633,6 +2636,39 @@ packages:
     resolution: {integrity: sha512-fEzPV3hSkSMltkw152tJKNARhOupqbH96MZWyRjNaYZOMIzbrTeQDG+MTc6Mr2pgzFQzFxAfmhGDNP5QK++2ZA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@ungap/structured-clone/-/structured-clone-1.2.1.tgz}
     name: '@ungap/structured-clone'
     version: 1.2.1
+    dev: false
+
+  registry.npmmirror.com/@vercel/analytics@1.4.1(next@15.0.2)(react@19.0.0-rc-02c0e824-20241028):
+    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@vercel/analytics/-/analytics-1.4.1.tgz}
+    id: registry.npmmirror.com/@vercel/analytics/1.4.1
+    name: '@vercel/analytics'
+    version: 1.4.1
+    peerDependencies:
+      '@remix-run/react': ^2
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
+    dependencies:
+      next: registry.npmmirror.com/next@15.0.2(react-dom@19.0.0-rc-02c0e824-20241028)(react@19.0.0-rc-02c0e824-20241028)
+      react: registry.npmmirror.com/react@19.0.0-rc-02c0e824-20241028
     dev: false
 
   registry.npmmirror.com/@vercel/speed-insights@1.1.0(next@15.0.2)(react@19.0.0-rc-02c0e824-20241028):

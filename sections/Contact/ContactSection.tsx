@@ -7,12 +7,7 @@ import {
 } from '@/components/ui/dialog';
 import { CopyButton } from '@/sections/Common/CopyButton';
 import { DialogWrapper } from '@/sections/Common/DialogWrapper';
-import {
-  githubAddress,
-  linkedinAddress,
-  emailAddress,
-  domainUrl,
-} from '@/whoami/links';
+import { githubAddress, linkedinAddress, emailAddress } from '@/whoami/links';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';

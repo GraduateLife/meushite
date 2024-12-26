@@ -26,7 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 
 // await wrapper to make nextjs happy
 async function getPost(slug: string) {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   const post = posts.find((post) => post.slug === slug);
   if (!post) {
     redirect('/404');
@@ -97,9 +97,15 @@ export default async function Post({
   params,
 }: UrlType<{ slug: string }, undefined>) {
   const slug = (await params).slug;
-
   const post = await getPost(slug);
   const contentHtml = await markdownToHtml(post.content);
+
+  // Fetch navigation data here instead of in the NavigationButtons component
+  const allPosts = await getAllPosts();
+  const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
+  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+  const nextPost =
+    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
 
   return (
     <DisableViewTransitions>
@@ -154,8 +160,8 @@ export default async function Post({
           <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </article>
 
-        {/* Navigation buttons */}
-        <NavigationButtons post={post} />
+        {/* Pass the pre-fetched data to a non-async NavigationButtons */}
+        <NavigationButtons prevPost={prevPost} nextPost={nextPost} />
       </main>
     </DisableViewTransitions>
   );
@@ -185,13 +191,14 @@ function PostTooltip({
   );
 }
 
-const NavigationButtons = ({ post }: { post: Post }) => {
-  const allPosts = getAllPosts();
-  const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
-  const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
-  const nextPost =
-    currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
-
+// Make NavigationButtons a regular client component
+const NavigationButtons = ({
+  prevPost,
+  nextPost,
+}: {
+  prevPost: Post | null;
+  nextPost: Post | null;
+}) => {
   return (
     <>
       <div className="fixed left-4 md:left-40 top-1/2 -translate-y-1/2 ">

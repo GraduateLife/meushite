@@ -47,10 +47,15 @@ export const Story = () => {
         <h1 className="text-7xl mb-16">What's up!</h1>
         <section className="my-4 text-2xl" aria-label="Introduction">
           <div>
-            I'm Eddie Zhang, I am a web developer based in{' '}
-            <span className="dark:text-red-600 text-red-500 text-2xl">Por</span>
-            <span className="text-green-600 text-2xl">tugal</span>
-            <span>, </span>
+            <h2>
+              <span>I'm Eddie Zhang, I am a web developer based in </span>
+              <span className="dark:text-red-600 text-red-500 text-2xl">
+                Por
+              </span>
+              <span className="text-green-600 text-2xl">tugal</span>
+              <span>, </span>
+            </h2>
+
             <div className="flex flex-wrap gap-1">
               <span>and I </span>
               <ICanDo />
@@ -60,9 +65,9 @@ export const Story = () => {
 
         <section className="my-4 text-2xl" aria-label="Experience">
           <p>
-            In my 3 years of working experience, I create responsive and
-            accessible pages by Nextjs and capable to develop server side
-            programs with Nodejs ecosystem.
+            With 3 years of working experience, I create responsive and
+            accessible pages using Next.js and am capable of developing
+            server-side programs within the Node.js ecosystem.
           </p>
         </section>
 
@@ -74,7 +79,10 @@ export const Story = () => {
             </span>
             for collaborations, feel free to contact me
           </p>
-          <SendMessage />
+          <div className="flex items-center justify-center md:block">
+            <SendMessage />
+          </div>
+
           {/* <p className="text-2xl my-4">Besides, you can also find me on</p>
           <SocialMedia /> */}
         </section>

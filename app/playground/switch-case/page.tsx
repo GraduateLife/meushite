@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 const Page = () => {
   const [num, setNum] = useState(0);
   return (
-    <div className="w-[600px] flex flex-col items-center justify-center">
+    <div className="w-[600px] flex flex-col items-center justify-center gap-y-4">
       <div>Switch case test</div>
       <Button
         onClick={() => {

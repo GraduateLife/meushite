@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/DarkModeProvider';
+import { Analytics } from '@vercel/analytics/react';
 
 import { Toaster } from '@/components/ui/toaster';
 import { ViewTransitions } from 'next-view-transitions';
@@ -21,6 +22,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
       <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
         <SpeedInsights />
+        <Analytics></Analytics>
+
         <Toaster />
         <BackToTop />
       </ThemeProvider>

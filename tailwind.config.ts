@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import { screens } from './tailwind.screen';
 
 const svgToDataUri = require('mini-svg-data-uri');
 
@@ -19,11 +20,7 @@ const config = {
     container: {
       center: true,
       padding: '2rem',
-      screens: {
-        sm: '500px',
-        md: '800px',
-        xl: '1400px',
-      },
+      screens: screens,
     },
     extend: {
       fontFamily: {

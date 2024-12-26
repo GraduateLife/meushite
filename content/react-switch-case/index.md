@@ -1,6 +1,6 @@
 ---
 slug: react-switch-case
-title: React Switch Case
+title: Write a react switch case component
 timestamp: '2024-12-24T12:14:05.862Z'
 top: false
 description: switch case component in React.js
@@ -35,3 +35,5 @@ Rather than using If-else blocks, I prefer switch cases for better readability. 
 
 Here's a working example, just like the switch-case everyone knows 😎
 ![react-switch-case-example](./case-example.png)
+Go to this link to experience
+[demo](/playground/switch-case)

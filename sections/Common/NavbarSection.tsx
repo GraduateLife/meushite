@@ -11,7 +11,7 @@ import { FloatingNav } from '@/components/ui/floating-navbar';
 import { DarkModeBtn } from '@/components/providers/DarkModeBtn';
 import DialogDemo from './SearchModal';
 import { navLinks } from './NavbarLinks';
-import useIsOnPC from '@/hooks/useIsOnPC';
+import useIsOnPC from '@/hooks/useIsPC';
 
 export type NavLinkComponent = NavLink & {
   icon: JSX.Element;

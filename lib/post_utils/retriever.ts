@@ -4,26 +4,31 @@ import matter from 'gray-matter';
 import { blogDirName } from './settings';
 import { replaceImagePaths } from './copyImages';
 
-export function getAllMdFiles(dir: string): string[] {
+export async function getAllMdFiles(dir: string): Promise<string[]> {
   const files: string[] = [];
-  fs.readdirSync(dir).forEach((file) => {
+  const entries = await fs.promises.readdir(dir);
+
+  for (const file of entries) {
     const fullPath = path.join(dir, file);
-    if (fs.statSync(fullPath).isDirectory()) {
-      files.push(...getAllMdFiles(fullPath));
+    const stat = await fs.promises.stat(fullPath);
+
+    if (stat.isDirectory()) {
+      const subFiles = await getAllMdFiles(fullPath);
+      files.push(...subFiles);
     } else if (file.endsWith('.md')) {
       files.push(fullPath);
     }
-  });
+  }
   return files;
 }
 
-export function getAllPosts(): Post[] {
+export async function getAllPosts(): Promise<Post[]> {
   const postsDirectory = path.join(process.cwd(), blogDirName);
-  const mdFiles = getAllMdFiles(postsDirectory);
+  const mdFiles = await getAllMdFiles(postsDirectory);
 
-  return mdFiles
-    .map((fullPath) => {
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const posts = await Promise.all(
+    mdFiles.map(async (fullPath) => {
+      const fileContents = await fs.promises.readFile(fullPath, 'utf8');
       const processedContent = replaceImagePaths(
         fileContents,
         path.basename(path.dirname(fullPath))
@@ -42,24 +47,26 @@ export function getAllPosts(): Post[] {
         coverImage: data.coverImage ?? undefined,
       };
     })
-    .sort((a, b) => {
-      // First, sort by 'top' flag
-      if (a.top && !b.top) return -1;
-      if (!a.top && b.top) return 1;
+  );
 
-      // Then sort by timestamp (latest first)
-      // Convert ISO strings to Date objects for comparison
-      const dateA = new Date(a.timestamp);
-      const dateB = new Date(b.timestamp);
-      return dateB.getTime() - dateA.getTime();
-    });
+  return posts.sort((a, b) => {
+    // First, sort by 'top' flag
+    if (a.top && !b.top) return -1;
+    if (!a.top && b.top) return 1;
+
+    // Then sort by timestamp (latest first)
+    // Convert ISO strings to Date objects for comparison
+    const dateA = new Date(a.timestamp);
+    const dateB = new Date(b.timestamp);
+    return dateB.getTime() - dateA.getTime();
+  });
 }
 
-export function getManyPostsByCondition(
+export async function getManyPostsByCondition(
   fn: (post: Post) => boolean,
   notFoundFn?: () => void
-) {
-  const posts = getAllPosts();
+): Promise<Post[]> {
+  const posts = await getAllPosts();
   const matchingPosts = posts.filter(fn);
   if (matchingPosts.length === 0) {
     return notFoundFn?.() ?? [];
@@ -67,14 +74,16 @@ export function getManyPostsByCondition(
   return matchingPosts;
 }
 
-export function getOnePostByCondition(
+export async function getOnePostByCondition(
   fn: (post: Post) => boolean,
-  notFoundFn?: () => void
-) {
-  const posts = getAllPosts();
+  notFoundFn = () => {
+    throw 'not found post';
+  }
+): Promise<Post | undefined> {
+  const posts = await getAllPosts();
   const post = posts.find(fn);
   if (!post) {
-    return notFoundFn?.();
+    return notFoundFn();
   }
   return post;
 }

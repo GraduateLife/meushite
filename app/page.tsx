@@ -15,7 +15,7 @@ export default function () {
 const HeroSection = () => {
   return (
     <>
-      <div className="max-w-[500px]">
+      <div className="max-w-[500px] md:max-w-[800px]">
         <Story></Story>
       </div>
       <div className="max-w-[500px]">

@@ -6,7 +6,7 @@ import { cleanMarkdown } from './cleaner';
 
 export async function generateSearchIndex() {
   updateFrontmatter();
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   const searchIndex = posts.map((post) => ({
     title: post.title,

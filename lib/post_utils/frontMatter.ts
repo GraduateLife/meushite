@@ -56,8 +56,8 @@ function generateAuthor(content: string): string {
   return myName;
 }
 
-export function updateFrontmatter() {
-  const filePaths = getAllMdFiles(postsDirectory);
+export async function updateFrontmatter() {
+  const filePaths = await getAllMdFiles(postsDirectory);
 
   filePaths.forEach((filePath) => {
     console.log('Checking frontmatter at filePath', filePath);

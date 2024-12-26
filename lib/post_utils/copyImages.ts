@@ -30,9 +30,9 @@ export function replaceImagePaths(content: string, folderName: string): string {
   return `---\n${updatedFrontmatter}\n---${updatedContent}`;
 }
 
-export function copyPostImages() {
+export async function copyPostImages() {
   // Get all markdown file paths
-  const mdFiles = getAllMdFiles(path.join(process.cwd(), blogDirName));
+  const mdFiles = await getAllMdFiles(path.join(process.cwd(), blogDirName));
 
   // Process each markdown file's directory
   mdFiles.forEach((mdFilePath) => {

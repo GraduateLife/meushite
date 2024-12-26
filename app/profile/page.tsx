@@ -2,10 +2,24 @@ import { SkillsMarquee } from '@/sections/ProfilePage/SkillsMarquee';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { ProjectShowcase } from '@/sections/ProfilePage/ProjectDialog';
+import { globalTitleSuffix } from '@/whoami/links';
 
 export const metadata: Metadata = {
-  title: 'About me',
-  description: 'meet a normal person',
+  title: 'About Me' + globalTitleSuffix,
+  description:
+    'Full Stack Developer with 3+ years of experience in Next.js, Node.js, and cloud technologies. Based in Shanghai and Lisbon.',
+  keywords: [
+    'full stack developer',
+    'web development',
+    'nextjs developer',
+    'typescript',
+    'javascript',
+    'cloud integration',
+    'shanghai',
+    'lisbon',
+    'electronic engineering',
+    'software engineer',
+  ],
 };
 
 export default () => {

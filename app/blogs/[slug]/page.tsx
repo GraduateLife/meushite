@@ -24,6 +24,7 @@ import {
 } from '@radix-ui/react-tooltip';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { globalTitleSuffix } from '@/whoami/links';
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -70,13 +71,13 @@ export async function generateMetadata({
   const post = await getPost(slug);
 
   return {
-    title: post.title,
+    title: post.title + globalTitleSuffix,
     description: post.description,
     authors: [{ name: post.author }],
     keywords: post.keywords,
     openGraph: {
       title: post.title,
-      description: post.content.substring(0, 200),
+      description: post.description,
       type: 'article',
       publishedTime: post.timestamp,
       authors: post.author ? [post.author] : undefined,

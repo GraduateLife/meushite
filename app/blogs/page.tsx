@@ -9,10 +9,25 @@ import { redirect } from 'next/navigation';
 import { IconCrown, IconTags } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
 import { Metadata } from 'next';
+import { globalTitleSuffix } from '@/whoami/links';
 
 export const metadata: Metadata = {
-  title: 'Blogs',
-  description: 'Blogs about my life and thoughts to latest tech',
+  title: 'My Blogs' + globalTitleSuffix,
+  description:
+    'Explore articles about web development, cloud computing, and software engineering. Personal insights and technical tutorials from a Full Stack Developer.',
+  keywords: [
+    'tech blog',
+    'web development',
+    'software engineering',
+    'coding tutorials',
+    'nextjs',
+    'cloud computing',
+    'full stack',
+    'development tips',
+    'programming insights',
+    'technical writing',
+    'software architecture',
+  ],
 };
 
 export default async function BlogIndex() {

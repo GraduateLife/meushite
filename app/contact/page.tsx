@@ -1,9 +1,24 @@
 import { Metadata } from 'next';
 import ContactSection from '@/sections/Contact/ContactSection';
+import { globalTitleSuffix } from '@/whoami/links';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'talk to a normal person',
+  title: 'Contact Me' + globalTitleSuffix,
+  description:
+    'Connect with me for collaborations, opportunities, or technical discussions. Available via email, LinkedIn, GitHub, and WeChat.',
+  keywords: [
+    'contact',
+    'full stack developer',
+    'professional network',
+    'collaboration',
+    'software development',
+    'tech consulting',
+    'remote work',
+    'international',
+    'web development',
+    'github',
+    'linkedin',
+  ],
 };
 
 export default function ContactPage() {

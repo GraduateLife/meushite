@@ -6,3 +6,6 @@ export const githubAddress = 'https://github.com/GraduateLife';
 export const domainUrl = 'https://iameddie.work';
 
 export const myName = 'Eddie Zhang';
+
+export const globalTitleSuffix =
+  " | Eddie Zhang's Website | Full Stack Developer | Web Development";

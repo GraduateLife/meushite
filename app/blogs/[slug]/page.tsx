@@ -26,7 +26,7 @@ import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { globalTitleSuffix } from '@/whoami/links';
 
-export const revalidate = 15 * 60; //seconds
+export const revalidate = 900; //seconds
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();

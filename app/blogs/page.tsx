@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
 };
 
-export const revalidate = 60 * 15; //seconds
+export const revalidate = 900; //seconds
 
 export default async function BlogIndex() {
   // const category = (await searchParams).category;

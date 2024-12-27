@@ -9,6 +9,7 @@ services:
       - DOCKER_BUILD=true
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1
-
-volumes:
-  content:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+# volumes:
+#   content:

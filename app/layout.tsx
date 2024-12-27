@@ -11,7 +11,7 @@ import { BackToTop } from '@/sections/Common/BackToTop';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const soraLight = localFont({
-  src: '/fonts/Sora-Light.ttf',
+  src: 'fonts/Sora-Light.ttf',
   variable: '--font-sora-light',
   display: 'swap',
 });

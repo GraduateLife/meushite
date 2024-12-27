@@ -1,5 +1,3 @@
-'use client';
-import { useMedia } from 'react-use';
 import { screens } from '../tailwind.screen';
 import { useEffect, useState } from 'react';
 

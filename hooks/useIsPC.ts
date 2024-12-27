@@ -1,8 +1,10 @@
+'use client';
+import { useMedia } from 'react-use';
 import { screens } from '../tailwind.screen';
 import { useEffect, useState } from 'react';
 
 const useMediaQuery = (queryString: string) => {
-  const [isMatched, setIsMatched] = useState(false);
+  const [isMatched, setIsMatched] = useState(true);
   useEffect(() => {
     const res = window.matchMedia(queryString);
     const handleWindowSizeChange = () => setIsMatched(res.matches);
@@ -13,7 +15,6 @@ const useMediaQuery = (queryString: string) => {
 };
 
 const useIsPC = () => {
-  // if (!window) return true;
   return useMediaQuery(`(min-width: ${screens.sm})`);
 };
 

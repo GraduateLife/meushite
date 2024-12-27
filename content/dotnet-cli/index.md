@@ -1,75 +1,77 @@
 ---
 slug: dotnet-cli-cheatsheet
-title: Dotnet Cli Cheatsheet
+title: Dotnet CLI Cheatsheet
 timestamp: '2024-12-20T04:16:33.699Z'
 top: false
 keywords:
   - snippets
   - dotnet
 author: Eddie Zhang
-description: |-
-  I don't like to click, I like to type (your fault, vscode)
-  General workflow like this
-  list all templates provided by microsoft
-  dotnet new list <by template name
+description: >-
+  A comprehensive cheatsheet for the .NET CLI, focusing on common commands and
+  workflows.
+
+  Includes template management, SDK commands, and version control tips for .NET
+  developers.
 ---
 
-I don't like to click, I like to type (your fault, vscode)
+I prefer typing commands over clicking (blame VSCode for that).
 
-## General workflow like this
+## General Workflow
 
 ```bash
-# list all templates provided by microsoft
-dotnet new list <by template name> --tag=<tag>
-# template name has space, use double quotes (guess I don't need to tell you this)
+# List all templates provided by Microsoft
+dotnet new list <template name> --tag=<tag>
+# For template names with spaces, please use double quotes
 ```
 
 ```bash
-# or find a template on nuget
-dotnet new search <by template name> --tag=<tag>
+# Or search for a template on NuGet
+dotnet new search <template name> --tag=<tag>
 ```
 
 ```bash
-# Create a new application, use short name instead of full name
+# Create a new application using the template's short name
 dotnet new <template short name>
 ```
 
-> note: unlike other cli tools, dotnet cli directly create the files and folders in your current directory, so please mkdir before you run this command
+> Unlike other CLI tools, the dotnet CLI creates files and folders directly in your current directory, so make sure to create a directory first before running this command.
 
 ```bash
-# run application, don't have to attach path name, you go to the folder
+# Run the application (navigate to the project folder first)
 dotnet run
 ```
 
 ```bash
-# build application
+# Build the application
 dotnet build
 ```
 
-## Dotnet sdk commands
+## .NET SDK Commands
 
 ```bash
-# list all sdk versions in your machine
+# List all SDK versions installed on your machine, The command structure differs from the usual pattern
 dotnet --list-sdks
-# don't know why it in not like 'dotnet list sdks'
+
 ```
 
 ```bash
-# check current sdk version
+# Check current SDK version
 dotnet --version
 ```
 
-> have to download sdk on [this page](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+> You can download SDKs from [the official .NET download page](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 >
-> or use dotnet sdk extension in vscode like I did![dotnet-install-tool](./dotnet-install-tool.png)
+> Alternatively, use the .NET SDK extension in VSCode as shown below:
+> ![dotnet-install-tool](./dotnet-install-tool.png)
 
-Sdks are installed globally, and cli automatically switch to the latest version
+SDKs are installed globally, and the CLI automatically uses the latest version.
 
-## So how to switch sdk versions?
+## How to Switch SDK Versions
 
 ```bash
-# go to your project root
+# Navigate to your project root and run:
 dotnet new globaljson
 ```
 
-> this command works both for new projects and for existing projects
+> This command works for both new and existing projects

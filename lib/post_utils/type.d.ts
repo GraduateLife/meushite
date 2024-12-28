@@ -11,3 +11,5 @@ declare type Post = {
   category?: string;
   // Add other post properties as needed
 };
+
+declare type PostIndex = Pick<Post, 'title' | 'content' | 'slug'>;

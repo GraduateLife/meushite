@@ -1,4 +1,4 @@
-import { LOG } from '@/lib/LOG';
+// import { LOG } from '@/lib/LOG';
 
 const Page = () => {
   return (

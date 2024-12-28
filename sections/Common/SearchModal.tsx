@@ -70,7 +70,7 @@ export default function DialogDemo() {
   return (
     <>
       <button
-        className="inline-flex h-9 w-fit rounded-lg border border-input px-3 py-2 text-sm text-foreground shadow-sm shadow-black/5 transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/20 dark:bg-black/70 bg-white/50"
+        className="inline-flex h-9 w-fit rounded-lg border border-input bg-white/50 px-3 py-2 text-sm text-foreground shadow-sm shadow-black/5 transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/20 dark:bg-black/70"
         onClick={() => setOpen(true)}
       >
         <span className="flex grow items-center">
@@ -105,7 +105,7 @@ export default function DialogDemo() {
           </If>
 
           <If condition={isSearching === true}>
-            <div className="p-2 text-stone-600 font-thin text-sm text-center transition-all duration-300">
+            <div className="p-2 text-center text-sm font-thin text-stone-600 transition-all duration-300">
               Continue typing to find the blogs you want
             </div>
             <If condition={searchResults.length === 0}>
@@ -122,7 +122,7 @@ export default function DialogDemo() {
                   };
                 }) => (
                   <div
-                    className={`hover:bg-accent cursor-pointer p-2 rounded-md text-sm text-foreground font-normal `}
+                    className={`cursor-pointer rounded-md p-2 text-sm font-normal text-foreground hover:bg-accent`}
                     key={item.refIndex}
                     onClick={() => {
                       setSearchQuery('');
@@ -132,7 +132,7 @@ export default function DialogDemo() {
                   >
                     <div className="flex justify-between gap-2">
                       <div className="inline-flex items-center gap-1">
-                        <span className="text-muted-foreground truncate w-[100px]">
+                        <span className="w-[100px] truncate text-muted-foreground">
                           {item.item.title}
                         </span>
                         <IconArrowRight
@@ -140,7 +140,7 @@ export default function DialogDemo() {
                           strokeWidth={2}
                           className="text-muted-foreground"
                         />
-                        <span className="text-muted-foreground truncate max-w-[200px]">
+                        <span className="max-w-[200px] truncate text-muted-foreground">
                           {cleanMarkdown(item.item.content)}
                         </span>
                       </div>

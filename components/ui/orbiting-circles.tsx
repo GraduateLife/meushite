@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-export interface OrbitingCirclesProps {
+export type OrbitingCirclesProps = {
   className?: string;
   children?: React.ReactNode;
   reverse?: boolean;
@@ -8,7 +8,7 @@ export interface OrbitingCirclesProps {
   delay?: number;
   radius?: number;
   path?: boolean;
-}
+};
 
 export default function OrbitingCircles({
   className,

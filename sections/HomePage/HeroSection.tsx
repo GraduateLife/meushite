@@ -42,17 +42,17 @@ const ICanDo = () => {
 
 export const Story = () => {
   return (
-    <main className="flex flex-col px-4  justify-between">
+    <main className="flex flex-col justify-between px-4">
       <div className="w-full">
-        <h1 className="text-7xl mb-16">What's up!</h1>
+        <h1 className="mb-16 text-7xl">What's up!</h1>
         <section className="my-4 text-2xl" aria-label="Introduction">
           <div>
             <h2>
               <span>I'm Eddie Zhang, I am a web developer based in </span>
-              <span className="dark:text-red-600 text-red-500 text-2xl">
+              <span className="text-2xl text-red-500 dark:text-red-600">
                 Por
               </span>
-              <span className="text-green-600 text-2xl">tugal</span>
+              <span className="text-2xl text-green-600">tugal</span>
               <span>, </span>
             </h2>
 
@@ -74,7 +74,7 @@ export const Story = () => {
         <section className="my-4 text-2xl" aria-label="Contact information">
           <p>
             Currently I am{' '}
-            <span className="text-emerald-500 dark:text-emerald-400 font-bold">
+            <span className="font-bold text-emerald-500 dark:text-emerald-400">
               open{' '}
             </span>
             for collaborations, feel free to contact me
@@ -120,14 +120,14 @@ export const SendMessage = () => {
       <ul className="inline-flex items-center gap-2">
         <li>
           <Button
-            className="dark:bg-cyan-700 bg-cyan-500 dark:text-black flex justify-center group/email-btn relative w-fit overflow-hidden font-bold"
+            className="group/email-btn relative flex w-fit justify-center overflow-hidden bg-cyan-500 font-bold dark:bg-cyan-700 dark:text-black"
             onClick={handleOpenMailClient}
             aria-label="Send email"
           >
-            <span className="group-hover/email-btn:translate-x-40 text-center transition-transform duration-500 text-white">
+            <span className="text-center text-white transition-transform duration-500 group-hover/email-btn:translate-x-40">
               Send Email
             </span>
-            <span className="-translate-x-40 group-hover/email-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition-transform duration-500 text-white">
+            <span className="absolute inset-0 flex -translate-x-40 items-center justify-center text-white transition-transform duration-500 group-hover/email-btn:translate-x-0">
               📮
             </span>
           </Button>
@@ -135,15 +135,15 @@ export const SendMessage = () => {
         <span>or</span>
         <li>
           <Button
-            className="bg-black dark:bg-gray-100 dark:text-black text-white flex justify-center group/msg-btn relative w-fit overflow-hidden font-bold"
+            className="group/msg-btn relative flex w-fit justify-center overflow-hidden bg-black font-bold text-white dark:bg-gray-100 dark:text-black"
             asChild
             aria-label="Navigate to contact page"
           >
             <NVTLink href="/contact">
-              <span className="group-hover/msg-btn:translate-x-40 text-center transition-transform duration-500">
+              <span className="text-center transition-transform duration-500 group-hover/msg-btn:translate-x-40">
                 Go To Contact
               </span>
-              <span className="-translate-x-40 group-hover/msg-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition-transform duration-500 text-white">
+              <span className="absolute inset-0 flex -translate-x-40 items-center justify-center text-white transition-transform duration-500 group-hover/msg-btn:translate-x-0">
                 🌐
               </span>
             </NVTLink>
@@ -159,7 +159,7 @@ const SocialMedia = () => {
       <ul className="inline-flex gap-6 px-2">
         <li>
           <Button
-            className="font-bold bg-black text-white ring-white ring-2 hover:bg-slate-800 inline-flex"
+            className="inline-flex bg-black font-bold text-white ring-2 ring-white hover:bg-slate-800"
             aria-label="Visit my Github profile"
             asChild
           >
@@ -176,7 +176,7 @@ const SocialMedia = () => {
         </li>
         <li>
           <Button
-            className="font-bold bg-blue-700 text-white ring-blue-900 ring-2 hover:bg-blue-800 inline-flex"
+            className="inline-flex bg-blue-700 font-bold text-white ring-2 ring-blue-900 hover:bg-blue-800"
             aria-label="Visit my LinkedIn profile"
             asChild
           >
@@ -192,7 +192,7 @@ const SocialMedia = () => {
         </li>
         <li>
           <Button
-            className="font-bold bg-green-700 text-white ring-green-900 ring-2 hover:bg-green-800 inline-flex"
+            className="inline-flex bg-green-700 font-bold text-white ring-2 ring-green-900 hover:bg-green-800"
             aria-label="Contact me on WeChat"
           >
             <WeChatIcon />

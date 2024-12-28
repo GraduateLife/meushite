@@ -5,7 +5,7 @@ import GoodImage from '../Common/GoodImage';
 export function OrbitingCirclesDemo() {
   // const isPc = useIsOnPC();
   return (
-    <div className="relative flex min-h-[350px] min-w-[350px] md:min-h-[520px] w-full md:min-w-[520px] flex-col items-center justify-center overflow-hidden rounded-lg border dark:bg-gray-700/30 bg-gray-400/20 md:shadow-xl">
+    <div className="relative flex min-h-[350px] w-full min-w-[350px] flex-col items-center justify-center overflow-hidden rounded-lg border bg-gray-400/20 dark:bg-gray-700/30 md:min-h-[520px] md:min-w-[520px] md:shadow-xl">
       <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-black">
         what I use
       </span>

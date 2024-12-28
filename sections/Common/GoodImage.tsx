@@ -7,7 +7,7 @@ const GoodImage = ({ src, size }: { src: string; size: number | string }) => {
         src={src}
         width={1000}
         height={1000}
-        className={` h-[${Number(size)}px] w-full object-contain `}
+        className={` h-[${Number(size)}px] w-full object-contain`}
         alt="thumbnail"
       />
     </>

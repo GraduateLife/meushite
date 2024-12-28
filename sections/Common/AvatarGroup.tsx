@@ -6,7 +6,7 @@ export default function AvatarDemo({ urls }: { urls: string[] }) {
       {urls.map((url, index) => (
         <Image
           key={url}
-          className="rounded-full ring-2 ring-background bg-white"
+          className="rounded-full bg-white ring-2 ring-background"
           src={url}
           width={20}
           height={20}

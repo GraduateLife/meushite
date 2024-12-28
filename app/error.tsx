@@ -16,10 +16,10 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <h1 className="text-4xl font-bold">Something went wrong!</h1>
       <button
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
         onClick={() => reset()}
       >
         Try again

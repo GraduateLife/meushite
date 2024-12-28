@@ -15,7 +15,9 @@ const thisFuse = new Fuse(searchIndex, fuseOptions);
 
 // In your search component:
 export const useSearch = (query: string) => {
-  const [searchResults, setSearchResults] = useState<FuseResult<any>[]>([]);
+  const [searchResults, setSearchResults] = useState<FuseResult<PostIndex>[]>(
+    []
+  );
 
   useEffect(() => {
     const results = thisFuse.search(query);

@@ -7,20 +7,18 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
-import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import remarkGfm from 'remark-gfm';
 import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
 import { Link } from 'next-view-transitions';
 import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
-import { getAllPosts, getOnePostByCondition } from '@/lib/post_utils/retriever';
+import { getAllPosts } from '@/lib/post_utils/retriever';
 import Image from 'next/image';
 import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  TooltipArrow,
 } from '@radix-ui/react-tooltip';
 import { Badge } from '@/components/ui/badge';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -112,10 +110,10 @@ export default async function Post({
 
   return (
     <DisableViewTransitions>
-      <main className="max-w-[80vw] min-w-[50vw] px-4 md:px-16 py-4 bg-gray-200/70 dark:bg-gray-900/70 rounded-lg">
+      <main className="min-w-[50vw] max-w-[80vw] rounded-lg bg-gray-200/70 px-4 py-4 dark:bg-gray-900/70 md:px-16">
         {post.top && (
           <div className="flex items-center gap-2">
-            <IconCrown className="w-8 h-8 fill-yellow-500 stroke-yellow-500" />
+            <IconCrown className="h-8 w-8 fill-yellow-500 stroke-yellow-500" />
             <span className="text-2xl font-bold">Top</span>
           </div>
         )}
@@ -123,7 +121,7 @@ export default async function Post({
         <div>
           <h1 className="text-3xl xl:text-6xl">{post.title}</h1>
           {/* Author and metadata section */}
-          <div className="flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-400 mb-8">
+          <div className="mb-8 flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-400">
             {post.author && (
               <div className="flex flex-wrap items-center gap-1">
                 <span>Written by {post.author}</span>
@@ -151,7 +149,7 @@ export default async function Post({
                 <Image
                   src={post.coverImage}
                   alt={post.title}
-                  className="w-full h-full object-cover my-4"
+                  className="my-4 h-full w-full object-cover"
                   width={1000}
                   height={1000}
                 />
@@ -159,7 +157,7 @@ export default async function Post({
             )}
           </div>
         </div>
-        <article className="prose dark:prose-invert prose-slate">
+        <article className="prose prose-slate dark:prose-invert">
           <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </article>
 
@@ -184,7 +182,7 @@ function PostTooltip({
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Icon className="w-8 h-8" />
+          <Icon className="h-8 w-8" />
         </TooltipTrigger>
         <TooltipContent className="px-2 py-1 text-xs" side="bottom">
           {text}
@@ -204,7 +202,7 @@ const NavigationButtons = ({
 }) => {
   return (
     <>
-      <div className="fixed left-4 md:left-40 top-1/2 -translate-y-1/2 ">
+      <div className="fixed left-4 top-1/2 -translate-y-1/2 md:left-40">
         {prevPost ? (
           <Link href={`/blogs/${prevPost.slug}`}>
             <PostTooltip
@@ -213,11 +211,11 @@ const NavigationButtons = ({
             />
           </Link>
         ) : (
-          <IconArrowLeft className="w-8 h-8 opacity-50 cursor-not-allowed" />
+          <IconArrowLeft className="h-8 w-8 cursor-not-allowed opacity-50" />
         )}
       </div>
 
-      <div className="fixed right-4 md:right-40 top-1/2 -translate-y-1/2">
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 md:right-40">
         {nextPost ? (
           <Link href={`/blogs/${nextPost.slug}`}>
             <PostTooltip
@@ -226,7 +224,7 @@ const NavigationButtons = ({
             />
           </Link>
         ) : (
-          <IconArrowRight className="w-8 h-8 opacity-50 cursor-not-allowed" />
+          <IconArrowRight className="h-8 w-8 cursor-not-allowed opacity-50" />
         )}
       </div>
     </>

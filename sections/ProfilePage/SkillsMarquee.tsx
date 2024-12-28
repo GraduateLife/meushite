@@ -26,7 +26,7 @@ const SkillCard = ({
           <TooltipTrigger asChild>
             <figure
               className={cn(
-                'relative w-fit cursor-pointer overflow-hidden rounded-full border py-2 px-4',
+                'relative w-fit cursor-pointer overflow-hidden rounded-full border px-4 py-2',
                 // light styles
                 'border-gray-950/[.1] bg-gray-950/[.03] hover:bg-gray-950/[.05]',
                 // dark styles
@@ -59,18 +59,18 @@ const SkillCard = ({
 
 export function SkillsMarquee() {
   return (
-    <div className="relative flex max-w-[500px] flex-col py-3 items-center justify-center overflow-hidden rounded-lg  ">
-      <Marquee pauseOnHover className="[--duration:20s] pt-6">
+    <div className="relative flex max-w-[500px] flex-col items-center justify-center overflow-hidden rounded-lg py-3">
+      <Marquee pauseOnHover className="pt-6 [--duration:20s]">
         {firstRow.map((sk) => (
           <SkillCard key={sk.name} {...sk} side="top" />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s] pt-6">
+      <Marquee reverse pauseOnHover className="pt-6 [--duration:20s]">
         {secondRow.map((sk) => (
           <SkillCard key={sk.name} {...sk} side="top" />
         ))}
       </Marquee>
-      <Marquee pauseOnHover className="[--duration:20s] pt-6">
+      <Marquee pauseOnHover className="pt-6 [--duration:20s]">
         {thirdRow.map((sk) => (
           <SkillCard key={sk.name} {...sk} side="top" />
         ))}

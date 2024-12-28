@@ -34,11 +34,10 @@ const buttonVariants = cva(
   }
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+export type ButtonProps = {
   asChild?: boolean;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
@@ -71,11 +70,11 @@ export const ButtonWithTranslateEffect = ({
 }: IButtonWithTranslateEffect) => {
   return (
     <>
-      <Button className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn relative w-fit overflow-hidden font-bold">
-        <span className="group-hover/modal-btn:translate-x-40 text-center transition-transform duration-500 ">
+      <Button className="group/modal-btn relative flex w-fit justify-center overflow-hidden bg-black font-bold text-white dark:bg-white dark:text-black">
+        <span className="text-center transition-transform duration-500 group-hover/modal-btn:translate-x-40">
           Book your flight
         </span>
-        <span className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition-transform duration-500 text-white">
+        <span className="absolute inset-0 flex -translate-x-40 items-center justify-center text-white transition-transform duration-500 group-hover/modal-btn:translate-x-0">
           ✈️
         </span>
       </Button>

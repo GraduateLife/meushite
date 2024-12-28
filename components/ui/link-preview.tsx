@@ -126,14 +126,14 @@ export const LinkPreview = ({
                   },
                 }}
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
-                className="shadow-xl rounded-xl"
+                className="rounded-xl shadow-xl"
                 style={{
                   x: translateX,
                 }}
               >
                 <Link
                   href={url}
-                  className="block p-1 bg-gray-200 dark:bg-gray-900 border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
+                  className="block rounded-xl border-2 border-transparent bg-gray-200 p-1 shadow hover:border-neutral-200 dark:bg-gray-900 dark:hover:border-neutral-800"
                   style={{ fontSize: 0 }}
                 >
                   <Image

@@ -67,7 +67,7 @@
     @apply bg-background text-foreground;
   }
   li {
-    @apply font-bold text-lg;
+    @apply text-lg font-bold;
   }
 }
 

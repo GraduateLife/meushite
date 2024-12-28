@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-interface MarqueeProps {
+type MarqueeProps = {
   className?: string;
   reverse?: boolean;
   pauseOnHover?: boolean;
@@ -8,7 +8,7 @@ interface MarqueeProps {
   vertical?: boolean;
   repeat?: number;
   [key: string]: any;
-}
+};
 
 export default function Marquee({
   className,
@@ -23,12 +23,12 @@ export default function Marquee({
     <div
       {...props}
       className={cn(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
+        'group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]',
         {
-          "flex-row": !vertical,
-          "flex-col": vertical,
+          'flex-row': !vertical,
+          'flex-col': vertical,
         },
-        className,
+        className
       )}
     >
       {Array(repeat)
@@ -36,11 +36,11 @@ export default function Marquee({
         .map((_, i) => (
           <div
             key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-              "[animation-direction:reverse]": reverse,
+            className={cn('flex shrink-0 justify-around [gap:var(--gap)]', {
+              'animate-marquee flex-row': !vertical,
+              'animate-marquee-vertical flex-col': vertical,
+              'group-hover:[animation-play-state:paused]': pauseOnHover,
+              '[animation-direction:reverse]': reverse,
             })}
           >
             {children}

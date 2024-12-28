@@ -22,15 +22,15 @@ export const metadata: Metadata = {
   ],
 };
 
-export default () => {
+const Page = () => {
   return (
     <>
-      <div className="min-w-[400px] flex flex-col ">
+      <div className="flex min-w-[400px] flex-col">
         <span className="text-gray-500" role="doc-subtitle">
           meet a normal person
         </span>
         <section aria-labelledby="basic-info">
-          <h2 id="basic-info" className="text-4xl my-3">
+          <h2 id="basic-info" className="my-3 text-4xl">
             Basic information
           </h2>
           <ul className="my-4" aria-label="Personal details">
@@ -39,7 +39,7 @@ export default () => {
               <span aria-label="Nickname">Eddie</span>
             </li>
             <li>
-              <div aria-label="Location" className="flex gap-2 flex-wrap">
+              <div aria-label="Location" className="flex flex-wrap gap-2">
                 <span>Location:</span>
                 <div className="inline-flex items-center gap-2">
                   <Image
@@ -76,10 +76,10 @@ export default () => {
           <SkillsMarquee aria-label="Skills showcase" />
         </section>
         <section aria-labelledby="education" className="flex-basis-1">
-          <h2 id="education" className="text-4xl my-6">
+          <h2 id="education" className="my-6 text-4xl">
             Education
           </h2>
-          <article className="rounded-lg  flex justify-between p-2 items-center ">
+          <article className="flex items-center justify-between rounded-lg p-2">
             <div>
               <p className="my-2">University of Manchester</p>
               <p className="my-2">MEng Electronic Engineering</p>
@@ -97,7 +97,7 @@ export default () => {
 
       <div className="min-w-[400px]">
         <section aria-labelledby="value-proposition">
-          <h2 id="value-proposition" className="text-4xl mb-3 mt-9">
+          <h2 id="value-proposition" className="mb-3 mt-9 text-4xl">
             I bring you
           </h2>
           <ul className="my-4" aria-label="Professional offerings">
@@ -113,7 +113,7 @@ export default () => {
           </ul>
         </section>
         <section aria-labelledby="projects">
-          <h2 id="projects" className="text-4xl mb-3 mt-9">
+          <h2 id="projects" className="mb-3 mt-9 text-4xl">
             My Projects
           </h2>
           <ProjectShowcase />
@@ -122,3 +122,5 @@ export default () => {
     </>
   );
 };
+
+export default Page;

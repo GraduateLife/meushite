@@ -11,7 +11,7 @@ export const BlogSidebar = ({
   currentCategory: string;
 }) => {
   return (
-    <aside className="w-64 sticky top-0 p-6">
+    <aside className="sticky top-0 w-64 p-6">
       <nav className="space-y-2">
         {categories.map((category) => {
           const isSelected = currentCategory === category;

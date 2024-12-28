@@ -41,7 +41,7 @@ export const BackToTop = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-3 rounded-full bg-black dark:bg-white text-white dark:text-black shadow-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors z-50"
+          className="fixed bottom-8 right-8 z-50 rounded-full bg-black p-3 text-white shadow-lg transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
           whileTap={{ scale: 0.9 }}
         >
           <IconArrowUp size={24} />

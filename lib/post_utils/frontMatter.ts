@@ -52,7 +52,7 @@ function generateDescription(content: string): string {
   return description || cleanText.substring(0, 160);
 }
 
-function generateAuthor(content: string): string {
+function generateAuthor(): string {
   return myName;
 }
 
@@ -103,7 +103,7 @@ export async function updateFrontmatter() {
 
     // Add author if not exists
     if (!data.author) {
-      data.author = generateAuthor(content);
+      data.author = generateAuthor();
     }
 
     // Add coverImage if not exists

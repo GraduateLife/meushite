@@ -18,7 +18,7 @@ export function DarkModeBtn() {
     <>
       {theme === 'light' && (
         <div
-          className="relative cursor-pointer size-[28px] flex justify-center items-center flex-shrink-0"
+          className="relative flex size-[28px] flex-shrink-0 cursor-pointer items-center justify-center"
           onClick={() => {
             if (document && document.startViewTransition) {
               document.startViewTransition(() => setTheme('dark'));
@@ -27,13 +27,13 @@ export function DarkModeBtn() {
             }
           }}
         >
-          <IconSun className="size-7 bg-transparent fill-amber-500 stroke-amber-500 blur-sm hover:blur-md transition-all absolute"></IconSun>
-          <IconSun className="size-7 bg-transparent fill-amber-500 stroke-amber-500 z-2"></IconSun>
+          <IconSun className="absolute size-7 bg-transparent fill-amber-500 stroke-amber-500 blur-sm transition-all hover:blur-md"></IconSun>
+          <IconSun className="z-2 size-7 bg-transparent fill-amber-500 stroke-amber-500"></IconSun>
         </div>
       )}
       {theme === 'dark' && (
         <div
-          className="relative cursor-pointer size-[28px] flex justify-center items-center flex-shrink-0"
+          className="relative flex size-[28px] flex-shrink-0 cursor-pointer items-center justify-center"
           onClick={() => {
             if (document && document.startViewTransition) {
               document.startViewTransition(() => setTheme('light'));
@@ -42,8 +42,8 @@ export function DarkModeBtn() {
             }
           }}
         >
-          <IconMoon className="size-7 bg-transparent fill-amber-200 stroke-amber-200 blur-sm hover:blur-md transition-all absolute"></IconMoon>
-          <IconMoon className="size-7 bg-transparent fill-amber-200 stroke-amber-200 z-2"></IconMoon>
+          <IconMoon className="absolute size-7 bg-transparent fill-amber-200 stroke-amber-200 blur-sm transition-all hover:blur-md"></IconMoon>
+          <IconMoon className="z-2 size-7 bg-transparent fill-amber-200 stroke-amber-200"></IconMoon>
         </div>
       )}
     </>

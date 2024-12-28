@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function () {
+const Page = () => {
   return (
     <>
       <div className="max-w-[500px] md:max-w-[800px]">
@@ -31,4 +31,6 @@ export default function () {
       </div>
     </>
   );
-}
+};
+
+export default Page;

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/DarkModeProvider';
@@ -9,12 +8,18 @@ import { ViewTransitions } from 'next-view-transitions';
 import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { BackToTop } from '@/sections/Common/BackToTop';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Metadata } from 'next';
+import { domainUrl } from '@/whoami/links';
 
 const soraLight = localFont({
   src: 'fonts/Sora-Light.ttf',
   variable: '--font-sora-light',
   display: 'swap',
 });
+
+export const metadata:Metadata = {
+  metadataBase:new URL(domainUrl),
+}
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -40,14 +45,14 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
         <body
-          className={`${soraLight.variable}  font-sans dark:bg-black bg-gray-50  dark:bg-dot-white/[0.2] bg-dot-black/[0.6]  mx-4`}
+          className={`${soraLight.variable} mx-4 bg-gray-50 font-sans bg-dot-black/[0.6] dark:bg-black dark:bg-dot-white/[0.2]`}
         >
           <LayoutWrapper>
-            <main className="flex flex-wrap sm:flex-col md:flex-row justify-evenly items-center pt-24 min-h-[calc(100vh-100px]">
+            <main className="min-h-[calc(100vh-100px] flex flex-wrap items-center justify-evenly pt-24 sm:flex-col md:flex-row">
               <NavbarSection></NavbarSection>
               {children}
             </main>
-            <footer className="text-center py-5 mt-auto ">
+            <footer className="mt-auto py-5 text-center">
               <span>© 2024 by Eddie with ❤️</span>
             </footer>
           </LayoutWrapper>

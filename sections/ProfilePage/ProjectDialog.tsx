@@ -39,31 +39,31 @@ const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <GlareCard
-      className="flex flex-col justify-between relative"
+      className="relative flex flex-col justify-between"
       sizeClassName="w-[360px]"
     >
       {Array.isArray(imageUrl) ? (
         <div
-          className="w-full h-[70%] bg-cover"
+          className="h-[70%] w-full bg-cover"
           style={{ backgroundImage: `url(${imageUrl[0]})` }}
           role="img"
           aria-label={`Preview image for ${title}`}
         />
       ) : (
         <div
-          className="w-full h-[70%] bg-cover"
+          className="h-[70%] w-full bg-cover"
           style={{ backgroundImage: `url(${imageUrl})` }}
           role="img"
           aria-label={`Preview image for ${title}`}
         />
       )}
-      <article className="px-6 my-3">
-        <h3 className="font-bold text-white text-lg">{title}</h3>
-        <p className="font-normal text-base text-neutral-200 mt-2">
+      <article className="my-3 px-6">
+        <h3 className="text-lg font-bold text-white">{title}</h3>
+        <p className="mt-2 text-base font-normal text-neutral-200">
           {description}
         </p>
         <ul
-          className="flex gap-2 mt-2"
+          className="mt-2 flex gap-2"
           aria-label={`Technologies used in ${title}`}
         >
           <AvatarGroup urls={technologies.map((tech) => tech.iconUrl)} />
@@ -98,18 +98,18 @@ const ProjectPopover = ({
     });
   }, [api]);
   return (
-    <DialogContent className=" bg-white/85 dark:bg-stone-900/80 max-w-[70vw] max-h-[90vh] overflow-y-auto">
-      <div className=" flex flex-col gap-6">
+    <DialogContent className="max-h-[90vh] max-w-[70vw] overflow-y-auto bg-white/85 dark:bg-stone-900/80">
+      <div className="flex flex-col gap-6">
         {/* Header Section */}
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">{title}</DialogTitle>
-          <DialogDescription className="text-lg mt-2">
+          <DialogDescription className="mt-2 text-lg">
             {description}
           </DialogDescription>
         </DialogHeader>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+        <div className="grid flex-1 grid-cols-1 gap-6 md:grid-cols-2">
           {/* Left Column - Image */}
           {/* <div className="relative rounded-lg overflow-hidden"> */}
           <div>
@@ -136,7 +136,7 @@ const ProjectPopover = ({
                             width={1000}
                             height={1000}
                             alt={`${title} preview ${index}`}
-                            className="absolute inset-0 object-cover w-full h-full"
+                            className="absolute inset-0 h-full w-full object-cover"
                           />
                         </AspectRatio>
                       </CarouselItem>
@@ -154,7 +154,7 @@ const ProjectPopover = ({
                   width={1000}
                   height={1000}
                   alt={`${title} preview`}
-                  className="absolute inset-0 object-cover w-full h-full"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </AspectRatio>
             )}
@@ -165,7 +165,7 @@ const ProjectPopover = ({
           <div className="flex flex-col gap-6">
             {/* Technologies Section */}
             <div>
-              <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+              <h3 className="mb-3 text-lg font-semibold">Technologies</h3>
               <div className="flex flex-wrap gap-3">
                 {technologies.map((tech) => (
                   <Badge
@@ -187,14 +187,14 @@ const ProjectPopover = ({
             </div>
             {notes && (
               <div>
-                <h3 className="text-lg font-semibold ">Notes</h3>
+                <h3 className="text-lg font-semibold">Notes</h3>
                 <div className="whitespace-pre-wrap">{notes}</div>
               </div>
             )}
 
             {/* Links Section */}
             <div>
-              <h3 className="text-lg font-semibold mb-3">Links</h3>
+              <h3 className="mb-3 text-lg font-semibold">Links</h3>
               <div className="flex gap-4">
                 <Button asChild variant={'secondary'}>
                   {urls.previewUrl && (
@@ -202,7 +202,7 @@ const ProjectPopover = ({
                       href={urls.previewUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 transition-colors rounded-lg px-4 py-2"
+                      className="flex items-center gap-2 rounded-lg bg-neutral-800 px-4 py-2 transition-colors hover:bg-neutral-700"
                     >
                       <span className="text-stone-700 dark:text-stone-300">
                         Live Preview
@@ -219,7 +219,7 @@ const ProjectPopover = ({
                     href={urls.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 transition-colors rounded-lg px-4 py-2"
+                    className="flex items-center gap-2 rounded-lg bg-neutral-800 px-4 py-2 transition-colors hover:bg-neutral-700"
                   >
                     <span className="text-stone-700 dark:text-stone-300">
                       Source Code
@@ -277,7 +277,7 @@ const ProjectDialog = ({
 export function ProjectShowcase() {
   return (
     <div
-      className="flex flex-col items-center  md:grid md:grid-cols-2 gap-4"
+      className="flex flex-col items-center gap-4 md:grid md:grid-cols-2"
       role="list"
       aria-label="Project showcase"
     >

@@ -55,7 +55,7 @@ export default function ContactPage() {
       case 'copy':
         return (
           <div className="flex items-center gap-2">
-            <div className="text-blue-600 select-all">{link.url}</div>
+            <div className="select-all text-blue-600">{link.url}</div>
             <CopyButton text={link.url} />
           </div>
         );
@@ -64,7 +64,7 @@ export default function ContactPage() {
           <div className="flex items-center gap-2">
             <DialogWrapper
               TriggerComponent={
-                <IconQrcode className="w-6 h-6 hover:text-green-600" />
+                <IconQrcode className="h-6 w-6 hover:text-green-600" />
               }
               ContentComponent={
                 <DialogContent>
@@ -118,7 +118,7 @@ export default function ContactPage() {
         animate="show"
       >
         <motion.li variants={item}>
-          <span className="text-gray-500 font-thin" role="doc-subtitle">
+          <span className="font-thin text-gray-500" role="doc-subtitle">
             talk to a normal person
           </span>
         </motion.li>

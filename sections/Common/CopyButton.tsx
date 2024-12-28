@@ -29,9 +29,9 @@ export function CopyButton({ text, className }: CopyToClipboardProps) {
     <div className="relative" onClick={handleCopy}>
       <ConfettiButton variant="ghost">
         {copied ? (
-          <IconCheck className="w-6 h-6 text-green-500" />
+          <IconCheck className="h-6 w-6 text-green-500" />
         ) : (
-          <IconCopy className="w-6 h-6 text-black dark:text-white" />
+          <IconCopy className="h-6 w-6 text-black dark:text-white" />
         )}
       </ConfettiButton>
     </div>

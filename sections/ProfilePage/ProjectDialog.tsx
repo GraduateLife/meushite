@@ -25,8 +25,6 @@ import React from 'react';
 import AvatarGroup from '../Common/AvatarGroup';
 import { DialogWrapper } from '../Common/DialogWrapper';
 
-const a = 1;
-
 const ProjectCard = ({
   title,
   description,

@@ -107,7 +107,7 @@ run `prettier write .` to format all the files in your project
 
 > why this command can run globally?
 
-modify my commends
+modify my commands
 
 ```json
     "lint": "pnpx @eslint/migrate-config .eslintrc.json && eslint --no-cache",

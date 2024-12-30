@@ -1,6 +1,6 @@
 ---
 slug: xcode-pitfalls
-title: the correct way to download ios runtime
+title: The Correct Way To Download Ios Runtime
 timestamp: '2024-12-28T15:44:51.166Z'
 top: false
 description: >-

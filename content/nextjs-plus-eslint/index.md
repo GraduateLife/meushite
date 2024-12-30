@@ -1,6 +1,6 @@
 ---
 slug: nextjs-plus-eslint
-title: A record of adding eslint to my nextjs website
+title: A Record Of Adding Eslint To My Nextjs Website
 timestamp: '2024-12-28T15:52:58.114Z'
 top: false
 description: >-

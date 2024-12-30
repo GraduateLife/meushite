@@ -1,6 +1,6 @@
 ---
 slug: client-components
-title: What exactly is "use client" in Nextjs?
+title: What Exactly Is "use client" In Nextjs?
 timestamp: '2024-12-26T13:03:46.107Z'
 top: false
 description: >-

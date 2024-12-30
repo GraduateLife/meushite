@@ -1,6 +1,6 @@
 ---
 slug: useful-links-for-developers
-title: Useful Links for Developers
+title: Useful Links For Developers
 timestamp: '2024-12-22T14:37:18.631Z'
 top: false
 description: A collection of useful links for developers

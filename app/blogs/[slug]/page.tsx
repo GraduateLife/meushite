@@ -117,7 +117,7 @@ export default async function Post({
         )}
 
         <div>
-          <h1 className="text-3xl xl:text-6xl">{post.title}</h1>
+          <h1 className="text-3xl xl:text-4xl">{post.title}</h1>
           {/* Author and metadata section */}
           <div className="mb-8 flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-400">
             {post.author && (
@@ -155,7 +155,7 @@ export default async function Post({
             )}
           </div>
         </div>
-        <article className="prose prose-slate dark:prose-invert">
+        <article className="prose prose-slate dark:prose-invert mx-auto">
           <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </article>
 

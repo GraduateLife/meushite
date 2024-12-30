@@ -1,6 +1,6 @@
 ---
 slug: dotnet-cli-cheatsheet
-title: Dotnet CLI Cheatsheet
+title: Dotnet Cli Cheatsheet
 timestamp: '2024-12-20T04:16:33.699Z'
 top: false
 keywords:

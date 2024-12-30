@@ -5,9 +5,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function capitalizeWords(text: string): string {
+export function slugToTitle(text: string): string {
   return text
     .split('-')
+    .map(
+      (word: string) =>
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    )
+    .join(' ');
+}
+
+export function sentenceToTitle(text: string) {
+  return text
+    .split(' ')
     .map(
       (word: string) =>
         word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()

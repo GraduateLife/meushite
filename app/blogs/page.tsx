@@ -58,7 +58,7 @@ export default async function BlogIndex() {
                 className="group"
               >
                 <GlareCard
-                  sizeClassName="w-[360px] md:w-[800px] h-[180px] md:h-[120px] my-4"
+                  sizeClassName="w-[360px] md:w-[800px] h-[160px] md:h-[120px] my-4"
                   className="px-6 py-4"
                 >
                   <div className="flex items-center justify-between">
@@ -76,14 +76,12 @@ export default async function BlogIndex() {
                         {cleanMarkdown(post.content)}
                       </p>
                       <div className="mt-2 flex flex-wrap gap-4">
-                        <div>
+                        <div className="flex flex-col md:flex-row gap-2">
                           {post.author && (
                             <div className="italic text-gray-400">
                               by {post.author}
                             </div>
                           )}
-                        </div>
-                        <div>
                           {post.keywords && post.keywords.length > 0 && (
                             <div className="flex flex-wrap items-center gap-2">
                               <IconTags className="h-5 w-5 text-gray-400" />

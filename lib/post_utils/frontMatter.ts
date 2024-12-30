@@ -4,7 +4,7 @@ import { myName } from '@/whoami/links';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import { capitalizeWords } from '../utils';
+import { sentenceToTitle, slugToTitle } from '../utils';
 import { cleanMarkdown } from './cleaner';
 import { getAllMdFiles } from './retriever';
 import { blogDirName } from './settings';
@@ -22,7 +22,7 @@ function generateSlug(relativePath: string): string {
 }
 
 function generateTitle(slug: string): string {
-  return capitalizeWords(slug);
+  return slugToTitle(slug);
 }
 
 function generateTimestamp(): string {
@@ -78,6 +78,8 @@ export async function updateFrontmatter() {
       data.title = generateTitle(slug);
       console.log('Generated fallback title for ', filePath);
     }
+
+    data.title = sentenceToTitle(data.title);
 
     // Add timestamp if not exists
     if (!data.timestamp) {

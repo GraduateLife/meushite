@@ -1,6 +1,6 @@
 ---
 slug: react-switch-case
-title: Write a react switch case component
+title: Write A React Switch Case Component
 timestamp: '2024-12-24T12:14:05.862Z'
 top: false
 description: switch case component in React.js

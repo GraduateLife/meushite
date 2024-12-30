@@ -1,6 +1,6 @@
 ---
 slug: orbstack-pitfalls
-title: Pitfalls on orbstack proxy
+title: Pitfalls On Orbstack Proxy
 timestamp: '2024-12-28T15:41:37.436Z'
 top: false
 description: >-

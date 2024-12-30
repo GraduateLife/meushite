@@ -1,35 +1,29 @@
 'use client';
 
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
-  Dialog,
+  Carousel,
+  CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+import {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 import { GlareCard } from '@/components/ui/glare-card';
-import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
-import Link from 'next/link';
-import { IconBrandGithub } from '@tabler/icons-react';
-import { IconExternalLink } from '@tabler/icons-react';
-import { Button } from '@/components/ui/button';
-import { DialogWrapper } from '../Common/DialogWrapper';
 import { ProjectCardProps, projectData } from '@/whoami/projects';
-import AvatarGroup from '../Common/AvatarGroup';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { CardStack } from '@/components/ui/card-stack';
-import {
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-  CarouselApi,
-} from '@/components/ui/carousel';
-import { Carousel } from '@/components/ui/carousel';
+import { IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+import AvatarGroup from '../Common/AvatarGroup';
+import { DialogWrapper } from '../Common/DialogWrapper';
 
 const ProjectCard = ({
   title,

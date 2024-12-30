@@ -35,3 +35,13 @@ git reset --hard
 [❌] export const revalidate = 15*60; //error
 [✅] export const revalidate = 900; //success
 ```
+
+## set git proxy
+
+```bash
+git config --global http.proxy '<http|socks5>://<hostname>:<port>'
+# cannot set https proxy because git doesn't have this option
+
+# see the config is set or not
+git config --global --get http.proxy
+```

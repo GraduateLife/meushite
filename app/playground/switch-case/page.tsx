@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/util/SwitchCase';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Page = () => {
   const [num, setNum] = useState(0);

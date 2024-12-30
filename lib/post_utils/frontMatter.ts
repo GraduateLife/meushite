@@ -1,13 +1,13 @@
 // scripts/update-frontmatter.ts
 
+import { myName } from '@/whoami/links';
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
-import { blogDirName } from './settings';
-import { getAllMdFiles } from './retriever';
+import path from 'path';
 import { capitalizeWords } from '../utils';
 import { cleanMarkdown } from './cleaner';
-import { myName } from '@/whoami/links';
+import { getAllMdFiles } from './retriever';
+import { blogDirName } from './settings';
 
 const postsDirectory = path.join(process.cwd(), blogDirName);
 

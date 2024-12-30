@@ -1,8 +1,7 @@
 import { OrbitingCirclesDemo } from '@/sections/HomePage/CodeCloud';
 import { Story } from '@/sections/HomePage/HeroSection';
-import React from 'react';
-import { Metadata } from 'next';
 import { globalTitleSuffix } from '@/whoami/links';
+import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Home' + globalTitleSuffix,
   description:

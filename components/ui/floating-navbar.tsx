@@ -1,15 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { AnimatePresence, motion, useScroll } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
-import { Link } from 'next-view-transitions';
 import useIsOnPC from '@/hooks/useIsPC';
+import { Link } from 'next-view-transitions';
 
 export const FloatingNav = ({
   navItems,

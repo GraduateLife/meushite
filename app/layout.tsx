@@ -1,15 +1,14 @@
-import localFont from 'next/font/local';
-import './globals.css';
 import { ThemeProvider } from '@/components/providers/DarkModeProvider';
-import { Analytics } from '@vercel/analytics/react';
-
 import { Toaster } from '@/components/ui/toaster';
-import { ViewTransitions } from 'next-view-transitions';
-import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { BackToTop } from '@/sections/Common/BackToTop';
+import { NavbarSection } from '@/sections/Common/NavbarSection';
+import { domainUrl } from '@/whoami/links';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata } from 'next';
-import { domainUrl } from '@/whoami/links';
+import { ViewTransitions } from 'next-view-transitions';
+import localFont from 'next/font/local';
+import './globals.css';
 
 const soraLight = localFont({
   src: 'fonts/Sora-Light.ttf',
@@ -17,9 +16,9 @@ const soraLight = localFont({
   display: 'swap',
 });
 
-export const metadata:Metadata = {
-  metadataBase:new URL(domainUrl),
-}
+export const metadata: Metadata = {
+  metadataBase: new URL(domainUrl),
+};
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (

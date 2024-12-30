@@ -4,11 +4,11 @@ import { into } from '@/lib/into';
 import { cn } from '@/lib/utils';
 import { Skill, skills } from '@/whoami/skills';
 import {
-  TooltipProvider,
   Tooltip,
-  TooltipTrigger,
-  TooltipContent,
   TooltipArrow,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from '@radix-ui/react-tooltip';
 import Image from 'next/image';
 const [firstRow, secondRow, thirdRow] = into<Skill>(3)(skills);
@@ -34,12 +34,12 @@ const SkillCard = ({
               )}
             >
               <div className="flex items-center gap-2">
-                <img
-                  className="rounded-full"
-                  width="26"
-                  height="26"
-                  alt={name}
+                <Image
+                  className="rounded-full bg-white/70 dark:bg-white"
                   src={imgUrl}
+                  width={26}
+                  height={26}
+                  alt={name}
                 />
                 <figcaption className="text-sm font-medium dark:text-white">
                   {name}

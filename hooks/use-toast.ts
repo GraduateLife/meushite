@@ -1,8 +1,9 @@
 'use client';
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { ToastActionElement, ToastProps } from '@/components/ui/toast';
-// Inspired by react-hot-toast library
 import * as React from 'react';
+// Inspired by react-hot-toast library
 
 // import type {
 //   ToastActionElement,
@@ -53,9 +54,9 @@ type Action =
       toastId?: ToasterToast['id'];
     };
 
-interface State {
+type State = {
   toasts: ToasterToast[];
-}
+};
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
@@ -192,4 +193,5 @@ function useToast() {
   };
 }
 
-export { useToast, toast };
+export { toast, useToast };
+/* eslint-enable  @typescript-eslint/no-unused-vars*/

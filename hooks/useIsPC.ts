@@ -1,5 +1,5 @@
-import { screens } from '../tailwind.screen';
 import { useEffect, useState } from 'react';
+import { screens } from '../tailwind.screen';
 
 const useMediaQuery = (queryString: string) => {
   const [isMatched, setIsMatched] = useState(true);

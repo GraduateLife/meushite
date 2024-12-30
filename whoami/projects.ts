@@ -83,14 +83,14 @@ const EshopBackend: ProjectCardProps = {
   ],
 };
 
-const BetterDoc: ProjectCardProps = {
-  urls: {
-    sourceUrl: 'https://github.com/GraduateLife/better-doc',
-  },
-  title: 'BetterDoc',
-  description: 'It was my personal website!',
-  imageUrl: '/Nestjs.png',
-  technologies: [],
-};
+// const BetterDoc: ProjectCardProps = {
+//   urls: {
+//     sourceUrl: 'https://github.com/GraduateLife/better-doc',
+//   },
+//   title: 'BetterDoc',
+//   description: 'It was my personal website!',
+//   imageUrl: '/Nestjs.png',
+//   technologies: [],
+// };
 
 export const projectData: ProjectCardProps[] = [EshopFrontend, EshopBackend];

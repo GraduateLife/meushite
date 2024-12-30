@@ -1,13 +1,11 @@
-import { GlareCard } from '@/components/ui/glare-card';
-
-import { getAllPosts } from '@/lib/post_utils/retriever';
-
-import Link from 'next/link';
-import { cleanMarkdown } from '@/lib/post_utils/cleaner';
-import { IconCrown, IconTags } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
-import { Metadata } from 'next';
+import { GlareCard } from '@/components/ui/glare-card';
+import { cleanMarkdown } from '@/lib/post_utils/cleaner';
+import { getAllPosts } from '@/lib/post_utils/retriever';
 import { globalTitleSuffix } from '@/whoami/links';
+import { IconCrown, IconTags } from '@tabler/icons-react';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'My Blogs' + globalTitleSuffix,

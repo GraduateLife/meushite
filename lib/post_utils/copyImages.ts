@@ -1,5 +1,5 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import { getAllMdFiles } from './retriever';
 import { blogDirName } from './settings';
 

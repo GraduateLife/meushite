@@ -1,18 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import Typewriter from 'typewriter-effect';
-import GithubSvg from '@/components/ui/tabler-icons/Github.svg';
-import Link from 'next/link';
-import { LinkedInIcon } from '@/components/ui/tabler-icons/LinkedIn.svg';
-import { WeChatIcon } from '@/components/ui/tabler-icons/Wechat.svg';
-import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
 import { ToastAction } from '@/components/ui/toast';
-import { useCopyToClipboard } from 'react-use';
-
+import { useToast } from '@/hooks/use-toast';
+import { emailAddress } from '@/whoami/links';
 import { Link as NVTLink } from 'next-view-transitions';
-import { emailAddress, githubAddress, linkedinAddress } from '@/whoami/links';
+import { useRouter } from 'next/navigation';
+import { useCopyToClipboard } from 'react-use';
+import Typewriter from 'typewriter-effect';
 
 const ICanDo = () => {
   return (
@@ -44,11 +39,11 @@ export const Story = () => {
   return (
     <main className="flex flex-col justify-between px-4">
       <div className="w-full">
-        <h1 className="mb-16 text-7xl">What's up!</h1>
+        <h1 className="mb-16 text-7xl">What&apos;s up!</h1>
         <section className="my-4 text-2xl" aria-label="Introduction">
           <div>
             <h2>
-              <span>I'm Eddie Zhang, I am a web developer based in </span>
+              <span>I&apos;m Eddie Zhang, I am a web developer based in </span>
               <span className="text-2xl text-red-500 dark:text-red-600">
                 Por
               </span>
@@ -82,9 +77,6 @@ export const Story = () => {
           <div className="flex items-center justify-center md:block">
             <SendMessage />
           </div>
-
-          {/* <p className="text-2xl my-4">Besides, you can also find me on</p>
-          <SocialMedia /> */}
         </section>
       </div>
     </main>
@@ -104,7 +96,7 @@ export const SendMessage = () => {
         description: 'Your mail client is opening...',
       });
       router.push(`mailto:${emailAddress}`);
-    } catch (error) {
+    } catch (_error) {
       copyToClipboard(emailAddress);
       toast({
         variant: 'destructive',
@@ -147,56 +139,6 @@ export const SendMessage = () => {
                 🌐
               </span>
             </NVTLink>
-          </Button>
-        </li>
-      </ul>
-    </nav>
-  );
-};
-const SocialMedia = () => {
-  return (
-    <nav aria-label="Social media links">
-      <ul className="inline-flex gap-6 px-2">
-        <li>
-          <Button
-            className="inline-flex bg-black font-bold text-white ring-2 ring-white hover:bg-slate-800"
-            aria-label="Visit my Github profile"
-            asChild
-          >
-            <Link
-              href={githubAddress}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {' '}
-              <GithubSvg />
-              <span>Github</span>
-            </Link>
-          </Button>
-        </li>
-        <li>
-          <Button
-            className="inline-flex bg-blue-700 font-bold text-white ring-2 ring-blue-900 hover:bg-blue-800"
-            aria-label="Visit my LinkedIn profile"
-            asChild
-          >
-            <Link
-              href={linkedinAddress}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <LinkedInIcon />
-              <span>LinkedIn</span>
-            </Link>
-          </Button>
-        </li>
-        <li>
-          <Button
-            className="inline-flex bg-green-700 font-bold text-white ring-2 ring-green-900 hover:bg-green-800"
-            aria-label="Contact me on WeChat"
-          >
-            <WeChatIcon />
-            <span>Wechat</span>
           </Button>
         </li>
       </ul>

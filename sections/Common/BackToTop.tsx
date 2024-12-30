@@ -1,8 +1,8 @@
 // components/ui/back-to-top.tsx
 'use client';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { IconArrowUp } from '@tabler/icons-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 export const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -16,7 +18,7 @@ function getPostTitle(filePath) {
     // Assuming your posts have a title in frontmatter
     const titleMatch = content.match(/title:\s*["'](.+)["']/);
     return titleMatch ? titleMatch[1] : path.basename(filePath, '.md');
-  } catch (error) {
+  } catch (_error) {
     return path.basename(filePath, '.md');
   }
 }
@@ -38,3 +40,5 @@ console.log(`Uploading: ${titles.join(', ')}`);
 execSync('git add .');
 execSync(`git commit -m "${commitMessage}"`);
 execSync('git push');
+
+/* eslint-enable  @typescript-eslint/no-require-imports*/

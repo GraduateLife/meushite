@@ -1,9 +1,8 @@
 'use client';
 
-import { useTheme } from 'next-themes';
-import * as React from 'react';
-import { IconMoon, IconSun } from '@tabler/icons-react';
 import useIsClient from '@/hooks/useIsClient';
+import { IconMoon, IconSun } from '@tabler/icons-react';
+import { useTheme } from 'next-themes';
 
 export function DarkModeBtn() {
   const { setTheme, theme } = useTheme();

@@ -2,10 +2,6 @@
 
 'use client';
 
-import * as React from 'react';
-import { useMemo } from 'react';
-import debounce from 'lodash/debounce';
-
 import {
   CommandDialog,
   CommandEmpty,
@@ -14,18 +10,20 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { cleanMarkdown } from '@/lib/post_utils/cleaner';
+import { useSearch } from '@/lib/post_utils/searcher';
 import {
   IconArrowRight,
   IconArrowUpRight,
   IconSearch,
 } from '@tabler/icons-react';
-import { useSearch } from '@/lib/post_utils/searcher';
-import { If } from '../../components/ui/util/If';
-import { For } from '../../components/ui/util/For';
-
+import debounce from 'lodash/debounce';
 import { Link } from 'next-view-transitions';
 import { useRouter } from 'next/navigation';
-import { cleanMarkdown } from '@/lib/post_utils/cleaner';
+import * as React from 'react';
+import { useMemo } from 'react';
+import { For } from '../../components/ui/util/For';
+import { If } from '../../components/ui/util/If';
 import { navLinks } from './NavbarLinks';
 
 export default function DialogDemo() {

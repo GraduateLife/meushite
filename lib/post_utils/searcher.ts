@@ -1,7 +1,7 @@
 'use client';
 
 import Fuse, { FuseResult } from 'fuse.js';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import searchIndex from '../../public/search-index.json' assert { type: 'json' };
 import { fuseOptions } from './settings';
 

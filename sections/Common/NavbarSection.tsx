@@ -1,17 +1,10 @@
 'use client';
-import React from 'react';
-import {
-  IconBook,
-  IconHome,
-  IconMessage,
-  IconPlus,
-  IconUser,
-} from '@tabler/icons-react';
-import { FloatingNav } from '@/components/ui/floating-navbar';
 import { DarkModeBtn } from '@/components/providers/DarkModeBtn';
-import DialogDemo from './SearchModal';
+import { FloatingNav } from '@/components/ui/floating-navbar';
+import { IconBook, IconHome, IconMessage, IconUser } from '@tabler/icons-react';
+// import useIsOnPC from '@/hooks/useIsPC';
 import { navLinks } from './NavbarLinks';
-import useIsOnPC from '@/hooks/useIsPC';
+import DialogDemo from './SearchModal';
 
 export type NavLinkComponent = NavLink & {
   icon: JSX.Element;
@@ -41,7 +34,7 @@ const navLinkComponents: NavLinkComponent[] = navLinks.map((item) => {
 }
 
 export function NavbarSection() {
-  const isOnPc = useIsOnPC();
+  // const isOnPc = useIsOnPC();
   // if (!isOnPc) {
   //   return (
   //     <div className="sm-w-[90%] w-full min-w-[400px]">

@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
 import ContactSection from '@/sections/Contact/ContactSection';
 import { globalTitleSuffix } from '@/whoami/links';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Me' + globalTitleSuffix,

@@ -1,8 +1,8 @@
-import { indexFileName } from './settings';
-import { updateFrontmatter } from './frontMatter';
 import fs from 'fs';
-import { getAllPosts } from './retriever';
 import { cleanMarkdown } from './cleaner';
+import { updateFrontmatter } from './frontMatter';
+import { getAllPosts } from './retriever';
+import { indexFileName } from './settings';
 
 export async function generateSearchIndex() {
   updateFrontmatter();

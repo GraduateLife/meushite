@@ -1,28 +1,26 @@
-// app/blogs/[slug]/page.tsx
-
-import { unified } from 'unified';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Badge } from '@/components/ui/badge';
+import { getAllPosts } from '@/lib/post_utils/retriever';
+import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
+import { globalTitleSuffix } from '@/whoami/links';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@radix-ui/react-tooltip';
+import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
+import { Link } from 'next-view-transitions';
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkToc from 'remark-toc';
-import rehypeSlug from 'rehype-slug';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeStringify from 'rehype-stringify';
-import { redirect } from 'next/navigation';
-import remarkGfm from 'remark-gfm';
-import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
-import { Link } from 'next-view-transitions';
-import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
-import { getAllPosts } from '@/lib/post_utils/retriever';
-import Image from 'next/image';
-import {
-  TooltipProvider,
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@radix-ui/react-tooltip';
-import { Badge } from '@/components/ui/badge';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { globalTitleSuffix } from '@/whoami/links';
+import { unified } from 'unified';
 
 export const revalidate = 900; //seconds
 

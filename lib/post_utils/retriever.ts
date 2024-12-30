@@ -1,8 +1,8 @@
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
-import { blogDirName } from './settings';
+import path from 'path';
 import { replaceImagePaths } from './copyImages';
+import { blogDirName } from './settings';
 
 export async function getAllMdFiles(dir: string): Promise<string[]> {
   const files: string[] = [];

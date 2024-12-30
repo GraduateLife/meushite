@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-unused-vars*/
+
 self.addEventListener('install', function (event) {
   // Installation code
 });
@@ -5,3 +7,4 @@ self.addEventListener('install', function (event) {
 self.addEventListener('fetch', function (event) {
   // Fetch handling code
 });
+/* eslint-enable  @typescript-eslint/no-unused-vars*/

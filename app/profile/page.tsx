@@ -1,8 +1,8 @@
+import { ProjectShowcase } from '@/sections/ProfilePage/ProjectDialog';
 import { SkillsMarquee } from '@/sections/ProfilePage/SkillsMarquee';
+import { globalTitleSuffix } from '@/whoami/links';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { ProjectShowcase } from '@/sections/ProfilePage/ProjectDialog';
-import { globalTitleSuffix } from '@/whoami/links';
 
 export const metadata: Metadata = {
   title: 'About Me' + globalTitleSuffix,

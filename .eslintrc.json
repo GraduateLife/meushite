@@ -5,12 +5,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "next",
-    "prettier"
-  ],
+
   "ignorePatterns": [
     "components/ui/**/*",
     ".next/**/*",
@@ -34,5 +29,11 @@
   "env": {
     "browser": true,
     "es2021": true
-  }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "next"
+  ]
 }

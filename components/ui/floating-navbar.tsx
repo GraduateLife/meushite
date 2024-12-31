@@ -1,9 +1,13 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { AnimatePresence, motion, useScroll } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 
-import useIsOnPC from '@/hooks/useIsPC';
 import { Link } from 'next-view-transitions';
 
 export const FloatingNav = ({
@@ -22,38 +26,35 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
 
   const [visible, setVisible] = useState(false);
-  const isPc = useIsOnPC();
+
+  const handleMouseMove = (event: MouseEvent) => {
+    if (event.clientY < 100) {
+      // Show when mouse is within 100px from top
+      setVisible(true);
+    }
+  };
 
   useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      if (isPc && event.clientY < 100) {
-        // Show when mouse is within 100px from top
-        setVisible(true);
-      } else if (!isPc) {
-        setVisible(true);
-      }
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // useMotionValueEvent(scrollYProgress, 'change', (current) => {
-  //   // Check if current is not undefined and is a number
-  //   if (typeof current === 'number') {
-  //     let direction = current! - scrollYProgress.getPrevious()!;
+  useMotionValueEvent(scrollYProgress, 'change', (current) => {
+    // Check if current is not undefined and is a number
+    if (typeof current === 'number') {
+      let direction = current! - scrollYProgress.getPrevious()!;
 
-  //     if (scrollYProgress.get() < 0.05) {
-  //       setVisible(true);
-  //     } else {
-  //       if (direction !== 0) {
-  //         setVisible(true);
-  //       } else {
-  //         setVisible(false);
-  //       }
-  //     }
-  //   }
-  // });
+      if (scrollYProgress.get() < 0.05) {
+        setVisible(true);
+      } else {
+        if (direction !== 0) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
+      }
+    }
+  });
 
   return (
     <AnimatePresence mode="wait">

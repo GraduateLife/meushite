@@ -5,15 +5,16 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=true next build",
     "dev": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && next dev",
-    "build": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && pnpm run format && next build",
+    "build": "next build",
     "serve": "next start",
     "serve-q": "pnpm run build && next start",
-    "lint": "pnpx @eslint/migrate-config .eslintrc.json && eslint --no-cache --fix",
+    "lint": "pnpx @eslint/migrate-config .eslintrc.json && eslint . --no-cache",
     "format": "pnpm run lint && prettier --write .",
     "md-up": "tsx lib/post_utils/frontMatter.ts",
     "md-localcp": "tsx lib/post_utils/copyImages.ts",
     "md-index": "tsx lib/post_utils/indexer.ts",
-    "md-publish": "pnpm run md-localcp && pnpm run md-index && node will-upload.js"
+    "md-publish": "pnpm run md-localcp && pnpm run md-index && node will-upload.js",
+    "prepare": "husky"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -90,6 +91,7 @@
     "eslint-config-next": "^15.1.3",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-plugin-organize-imports": "^4.1.0",
@@ -101,5 +103,5 @@
   "engines": {
     "node": "^22.x"
   },
-  "packageManager": "pnpm@9.15.1+sha512.1acb565e6193efbebda772702950469150cf12bcc764262e7587e71d19dc98a423dff9536e57ea44c49bdf790ff694e83c27be5faa23d67e0c033b583be4bfcf"
+  "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321"
 }

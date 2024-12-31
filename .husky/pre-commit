@@ -1,0 +1,6 @@
+pnpm run md-up 
+pnpm run md-localcp 
+pnpm run md-index 
+
+pnpm run format
+git update-index --again

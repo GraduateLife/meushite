@@ -63,7 +63,8 @@ this config tells git to use LF on saving any file, except .cmd or .bat
 run following commands to reset eol. Before it, you should make sure your local repository is clean (commit/stash)
 
 ```bash
-git rm --cached -r .
+git ls-files --eol # inspect if there are files use crlf
+git rm --cached -r . # clear git index
 git reset --hard
 ```
 

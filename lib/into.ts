@@ -13,7 +13,7 @@ export function into<T>(parts: number) {
     }
 
     if (parts > array.length) {
-      console.warn('Number of parts is greater than array length');
+      throw new Error('Number of parts is greater than array length');
     }
 
     const chunkSize = Math.ceil(array.length / parts);

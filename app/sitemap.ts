@@ -1,11 +1,11 @@
 import { MetadataRoute } from 'next';
-import { getAllPosts } from '../lib/post_utils/retriever';
+import { convertAllPostsFromLocal } from '../lib/post_utils/retriever';
 import { domainUrl } from '../whoami/links';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get your blog posts from your database/CMS/file system
   // This is just an example - replace with your actual data fetching logic
-  const blogs = await getAllPosts(); // Your fetch function
+  const blogs = await convertAllPostsFromLocal(); // Your fetch function
 
   const blogUrls = blogs.map((post) => ({
     url: `${domainUrl}/blogs/${post.slug}`,

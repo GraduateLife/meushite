@@ -1,9 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { getAllMdFiles } from './retriever';
+import { echo, em, notice } from '../echo';
+import { getAllLocalMdFiles } from './retriever';
 import { blogDirName } from './settings';
 
-export function replaceImagePaths(content: string, folderName: string): string {
+export function replaceImagePathsInLocal(
+  content: string,
+  folderName: string,
+  findResourceIn?: string
+): string {
   // Split content into frontmatter and main content
   const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
   const frontmatterMatch = content.match(frontmatterRegex);
@@ -18,13 +23,16 @@ export function replaceImagePaths(content: string, folderName: string): string {
   // Replace frontmatter coverImage with ./ paths
   const updatedFrontmatter = frontmatter.replace(
     /coverImage:\s*\.\/(.*?)(\s|$)/g,
-    (_, imagePath) => `coverImage: /${folderName}/${imagePath}`
+    (_, imagePath) =>
+      `coverImage: ${findResourceIn || `/${folderName}/`}${imagePath}`
   );
 
-  // Replace markdown image syntax with ./ paths in the main content
+  // Replace markdown image syntax with configurable paths in the main content
   const updatedContent = restContent.replace(
     /\[([^\]]*)\]\(\.\/(.*?)\)/g,
-    (_, altText, imagePath) => `[${altText}](/${folderName}/${imagePath})`
+    (_, altText, imagePath) => {
+      return `[${altText}](${findResourceIn || `/${folderName}/`}${imagePath})`;
+    }
   );
 
   return `---\n${updatedFrontmatter}\n---${updatedContent}`;
@@ -32,7 +40,9 @@ export function replaceImagePaths(content: string, folderName: string): string {
 
 export async function copyPostImages() {
   // Get all markdown file paths
-  const mdFiles = await getAllMdFiles(path.join(process.cwd(), blogDirName));
+  const mdFiles = await getAllLocalMdFiles(
+    path.join(process.cwd(), blogDirName)
+  );
 
   // Process each markdown file's directory
   mdFiles.forEach((mdFilePath) => {
@@ -41,7 +51,7 @@ export async function copyPostImages() {
     // Get all files in the markdown file's directory
     fs.readdirSync(mdDir).forEach((file) => {
       if (/\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file)) {
-        console.log(`found local image ${file} in`, mdDir);
+        echo.log(`found local image ${notice(file)} in ${em(mdDir)}`);
         const sourcePath = path.join(mdDir, file);
 
         const relativePath = path.relative(
@@ -57,18 +67,18 @@ export async function copyPostImages() {
           const targetStats = fs.statSync(targetPath);
 
           if (sourceStats.size === targetStats.size) {
-            console.log(`Skipping ${file} - already exists`);
+            echo.good(`Skipping ${file} because it already exists`);
             return;
           }
         }
 
         // Create directory if it doesn't exist
         fs.mkdirSync(targetDir, { recursive: true });
-        console.log('created target dir', targetDir);
+        echo.warn(`created target dir ${targetDir}`);
 
         // Copy the file
         fs.copyFileSync(sourcePath, targetPath);
-        console.log('copied file to', targetPath);
+        echo.warn(`copied file to ${targetPath}`);
       }
     });
   });

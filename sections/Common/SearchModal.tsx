@@ -42,9 +42,6 @@ export default function DialogDemo() {
         }
         if (value.startsWith('#')) {
           setIsSearching(true);
-          console.log('value', value);
-
-          console.log('searchQuery', value.split('#')[1].trim());
           setSearchQuery(value.split('#')[1].trim());
         }
       }, 100),

@@ -46,6 +46,10 @@ export default [
     },
 
     rules: {
+      'no-console': 'warn',
+      'no-debugger': 'error',
+      'no-process-env': 'error',
+
       '@typescript-eslint/no-unused-vars': [
         'error',
         {

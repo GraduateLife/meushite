@@ -1,8 +1,12 @@
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
-import { getAllPosts } from '@/lib/post_utils/retriever';
+import { markdownToHtml } from '@/lib/post_utils/converter';
+import {
+  convertAllPostsFromLocal,
+  generatePostMetadata,
+  getPostFromRemote,
+} from '@/lib/post_utils/retriever';
 import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
-import { globalTitleSuffix } from '@/whoami/links';
 import {
   Tooltip,
   TooltipContent,
@@ -13,82 +17,35 @@ import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import rehypePrettyCode from 'rehype-pretty-code';
-import rehypeSlug from 'rehype-slug';
-import rehypeStringify from 'rehype-stringify';
-import remarkGfm from 'remark-gfm';
-import remarkParse from 'remark-parse';
-import remarkRehype from 'remark-rehype';
-import remarkToc from 'remark-toc';
-import { unified } from 'unified';
 
 export const revalidate = 900; //seconds
 
-export async function generateStaticParams() {
-  const posts = await getAllPosts();
+// export async function generateStaticParams() {
+//   const posts = await convertAllPostsFromLocal();
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
+//   return posts.map((post) => ({
+//     slug: post.slug,
+//   }));
+// }
 
 // await wrapper to make nextjs happy
 async function getPost(slug: string) {
-  const posts = await getAllPosts();
-  const post = posts.find((post) => post.slug === slug);
+  // const posts = await convertAllPostsFromLocal();
+  // const post = posts.find((post) => post.slug === slug);
+  const post = await getPostFromRemote(slug);
   if (!post) {
     redirect('/404');
   }
   return post;
 }
 
-async function markdownToHtml(content: string) {
-  const result = await unified()
-    .use(remarkParse)
-    .use(remarkGfm)
-    .use(remarkToc, {
-      heading: 'Table of Contents', // This will be the TOC heading
-      tight: true, // More compact list
-    })
-    .use(remarkRehype)
-    .use(rehypeSlug)
-    .use(rehypePrettyCode, {
-      theme: 'one-dark-pro',
-      keepBackground: true,
-    })
-    .use(rehypeStringify)
-    .process(content);
-
-  return String(result);
-}
-
 export async function generateMetadata({
   params,
 }: UrlType<{ slug: string }, undefined>) {
-  const slug = (await params).slug;
-  const post = await getPost(slug);
-
-  return {
-    title: post.title + globalTitleSuffix,
-    description: post.description,
-    authors: [{ name: post.author }],
-    keywords: post.keywords,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: 'article',
-      publishedTime: post.timestamp,
-      authors: post.author ? [post.author] : undefined,
-      tags: post.keywords,
-      images: post.coverImage ? [post.coverImage] : undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: post.description,
-      images: post.coverImage ? [post.coverImage] : undefined,
-    },
-  };
+  return generatePostMetadata({
+    params,
+    fn: getPost,
+  });
 }
 
 // Page component
@@ -100,7 +57,7 @@ export default async function Post({
   const contentHtml = await markdownToHtml(post.content);
 
   // Fetch navigation data here instead of in the NavigationButtons component
-  const allPosts = await getAllPosts();
+  const allPosts = await convertAllPostsFromLocal();
   const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost =

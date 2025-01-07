@@ -3,15 +3,13 @@ import { Toaster } from '@/components/ui/toaster';
 import { BackToTop } from '@/sections/Common/BackToTop';
 import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { domainUrl } from '@/whoami/links';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata } from 'next';
 import { ViewTransitions } from 'next-view-transitions';
 import localFont from 'next/font/local';
 import './globals.css';
 
 const soraLight = localFont({
-  src: 'fonts/Sora-Light.ttf',
+  src: './fonts/Sora-Light.ttf',
   variable: '--font-sora-light',
   display: 'swap',
 });
@@ -25,8 +23,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
-        <SpeedInsights />
-        <Analytics></Analytics>
+        {/* <SpeedInsights /> */}
+        {/* <Analytics></Analytics> */}
 
         <Toaster />
         <BackToTop />
@@ -34,7 +32,6 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     </>
   );
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

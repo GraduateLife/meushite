@@ -1,12 +1,12 @@
 import fs from 'fs';
 import { cleanMarkdown } from './cleaner';
 import { updateFrontmatter } from './frontMatter';
-import { getAllPosts } from './retriever';
+import { convertAllPostsFromLocal } from './retriever';
 import { indexFileName } from './settings';
 
 export async function generateSearchIndex() {
   updateFrontmatter();
-  const posts = await getAllPosts();
+  const posts = await convertAllPostsFromLocal();
 
   const searchIndex = posts.map((post) => ({
     title: post.title,

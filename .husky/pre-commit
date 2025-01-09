@@ -1,4 +1,4 @@
-pnpm run md-localcp 
+pnpm run md-local-copy
 pnpm run md-index 
 
 pnpm run format

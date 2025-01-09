@@ -12,11 +12,11 @@ export const blogDirName = SITE_BLOG_LOCAL_STORAGE_DIR;
 export const indexFileName = 'public/search-index.json';
 
 export const remoteResourceMapping = (fullPath: string) =>
-  path.join(
-    SITE_BLOG_REMOTE_STORAGE_PUBLIC_ENDPOINT_URL,
-    SITE_BLOG_LOCAL_STORAGE_DIR,
-    path.basename(path.dirname(fullPath))
-  );
+  SITE_BLOG_REMOTE_STORAGE_PUBLIC_ENDPOINT_URL +
+  '/' +
+  SITE_BLOG_LOCAL_STORAGE_DIR +
+  '/' +
+  path.basename(path.dirname(fullPath));
 
 export const localResourceMapping = (fullPath: string): string => {
   const result = path.join('/', path.basename(path.dirname(fullPath)));

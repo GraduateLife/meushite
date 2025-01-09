@@ -10,14 +10,20 @@ import {
 import fs from 'fs';
 import mime from 'mime-types';
 import path from 'path';
-import { BucketEndpoint } from './utils';
+
+// Extract commonly used env variables
+const {
+  CLOUDFLARE_R2_ACCOUNT_ID,
+  CLOUDFLARE_R2_ACCESS_KEY_ID,
+  CLOUDFLARE_R2_SECRET_ACCESS_KEY,
+} = env;
 
 const R2Storage = new S3Client({
   region: 'auto',
-  endpoint: BucketEndpoint,
+  endpoint: `https://${CLOUDFLARE_R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
-    accessKeyId: env.CLOUDFLARE_R2_ACCESS_KEY_ID,
-    secretAccessKey: env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
+    accessKeyId: CLOUDFLARE_R2_ACCESS_KEY_ID,
+    secretAccessKey: CLOUDFLARE_R2_SECRET_ACCESS_KEY,
   },
 });
 
@@ -37,6 +43,23 @@ const getObject = async (
   return await R2Storage.send(
     new GetObjectCommand({ Bucket: bucketName, Key: key })
   );
+};
+
+export const hasObjectInBucket = async (
+  key: string,
+  bucketName: string = env.CLOUDFLARE_R2_BUCKET_NAME
+): Promise<boolean> => {
+  echo.info(`Checking if ${notice(key)} exists in bucket ${em(bucketName)}`);
+  try {
+    await R2Storage.send(
+      new GetObjectCommand({ Bucket: bucketName, Key: key })
+    );
+    echo.good(`Found ${notice(key)} in bucket ${em(bucketName)}`);
+    return true;
+  } catch (error) {
+    echo.warn(`Object ${notice(key)} not found in bucket ${em(bucketName)}`);
+    return false;
+  }
 };
 
 export const uploadObject = async (

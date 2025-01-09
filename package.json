@@ -5,16 +5,15 @@
   "scripts": {
     "analyze": "cross-env ANALYZE=true next build",
     "dev-q": "next dev",
-    "dev": "pnpm run md-up && pnpm run md-localcp && pnpm run md-index && next dev",
+    "dev": "pnpm run md-up && pnpm run md-local-copy && pnpm run md-index && next dev",
     "build": "next build",
     "serve": "next start",
     "serve-q": "pnpm run build && next start",
     "lint": "pnpx @eslint/migrate-config .eslintrc.json && eslint . --no-cache",
     "format": "pnpm run lint && prettier --write .",
     "md-up": "tsx lib/post_utils/frontMatter.ts",
-    "md-localcp": "tsx lib/post_utils/copier.ts",
+    "md-local-copy": "tsx scripts/local-copy.ts",
     "md-index": "tsx lib/post_utils/indexer.ts",
-    "md-publish": "pnpm run md-localcp && pnpm run md-index && node will-upload.js",
     "prepare": "husky"
   },
   "dependencies": {
@@ -45,6 +44,7 @@
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
     "embla-carousel-autoplay": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
     "framer-motion": "^11.11.11",

@@ -1,11 +1,12 @@
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
-import { markdownToHtml } from '@/lib/post_utils/converter';
 import {
-  convertAllPostsFromLocal,
-  generatePostMetadata,
-  getPostFromRemote,
-} from '@/lib/post_utils/retriever';
+  getAllPostsFromLocal,
+  getOnePostFromLocalBySlug,
+} from '@/lib/post_utils/local-fetcher';
+import { markdownToHtml } from '@/lib/post_utils/md-parser';
+import { generatePostMetadata } from '@/lib/post_utils/settings';
+
 import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
 import {
   Tooltip,
@@ -16,26 +17,22 @@ import {
 import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
-import { redirect } from 'next/navigation';
 
 export const revalidate = 900; //seconds
 
-// export async function generateStaticParams() {
-//   const posts = await convertAllPostsFromLocal();
+export async function generateStaticParams() {
+  const posts = await getAllPostsFromLocal();
 
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }));
-// }
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 // await wrapper to make nextjs happy
 async function getPost(slug: string) {
   // const posts = await convertAllPostsFromLocal();
   // const post = posts.find((post) => post.slug === slug);
-  const post = await getPostFromRemote(slug);
-  if (!post) {
-    redirect('/404');
-  }
+  const post = await getOnePostFromLocalBySlug(slug);
   return post;
 }
 
@@ -57,7 +54,7 @@ export default async function Post({
   const contentHtml = await markdownToHtml(post.content);
 
   // Fetch navigation data here instead of in the NavigationButtons component
-  const allPosts = await convertAllPostsFromLocal();
+  const allPosts = await getAllPostsFromLocal();
   const currentIndex = allPosts.findIndex((p) => p.slug === post.slug);
   const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
   const nextPost =

@@ -1,5 +1,9 @@
+import 'dotenv/config';
 /* eslint-disable no-process-env */
-
+const SITE_BLOG_LOCAL_STORAGE_DIR = process.env
+  .SITE_BLOG_LOCAL_STORAGE_DIR as string;
+const SITE_BLOG_REMOTE_STORAGE_PUBLIC_ENDPOINT_URL = process.env
+  .SITE_BLOG_REMOTE_STORAGE_PUBLIC_ENDPOINT_URL as string;
 const CLOUDFLARE_R2_ACCOUNT_ID = process.env.CLOUDFLARE_R2_ACCOUNT_ID as string;
 const CLOUDFLARE_R2_ACCESS_KEY_ID = process.env
   .CLOUDFLARE_R2_ACCESS_KEY_ID as string;
@@ -7,11 +11,15 @@ const CLOUDFLARE_R2_SECRET_ACCESS_KEY = process.env
   .CLOUDFLARE_R2_SECRET_ACCESS_KEY as string;
 const CLOUDFLARE_R2_BUCKET_NAME = process.env
   .CLOUDFLARE_R2_BUCKET_NAME as string;
+const SITE_BLOG_IMAGE_READ_MODE = process.env
+  .SITE_BLOG_IMAGE_READ_MODE as string;
 
 export const env = {
+  SITE_BLOG_LOCAL_STORAGE_DIR,
+  SITE_BLOG_REMOTE_STORAGE_PUBLIC_ENDPOINT_URL,
   CLOUDFLARE_R2_ACCOUNT_ID,
   CLOUDFLARE_R2_ACCESS_KEY_ID,
   CLOUDFLARE_R2_SECRET_ACCESS_KEY,
   CLOUDFLARE_R2_BUCKET_NAME,
+  SITE_BLOG_IMAGE_READ_MODE,
 } as const;
-/* eslint-enable no-process-env */

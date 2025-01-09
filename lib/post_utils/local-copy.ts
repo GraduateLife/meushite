@@ -1,47 +1,16 @@
+import { env } from '@/env';
 import fs from 'fs';
 import path from 'path';
 import { echo, em, notice } from '../echo';
-import { getAllLocalMdFiles } from './retriever';
-import { blogDirName } from './settings';
+import { getAllLocalMdFiles } from './local-fetcher';
 
-export function replaceImagePathsInLocal(
-  content: string,
-  folderName: string,
-  findResourceIn?: string
-): string {
-  // Split content into frontmatter and main content
-  const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
-  const frontmatterMatch = content.match(frontmatterRegex);
+// Extract commonly used env variables
+const { SITE_BLOG_LOCAL_STORAGE_DIR } = env;
 
-  if (!frontmatterMatch) {
-    return content;
-  }
-
-  const frontmatter = frontmatterMatch[1];
-  const restContent = content.slice(frontmatterMatch[0].length);
-
-  // Replace frontmatter coverImage with ./ paths
-  const updatedFrontmatter = frontmatter.replace(
-    /coverImage:\s*\.\/(.*?)(\s|$)/g,
-    (_, imagePath) =>
-      `coverImage: ${findResourceIn || `/${folderName}/`}${imagePath}`
-  );
-
-  // Replace markdown image syntax with configurable paths in the main content
-  const updatedContent = restContent.replace(
-    /\[([^\]]*)\]\(\.\/(.*?)\)/g,
-    (_, altText, imagePath) => {
-      return `[${altText}](${findResourceIn || `/${folderName}/`}${imagePath})`;
-    }
-  );
-
-  return `---\n${updatedFrontmatter}\n---${updatedContent}`;
-}
-
-export async function copyPostImages() {
+export async function copyPostImagesToPublic() {
   // Get all markdown file paths
   const mdFiles = await getAllLocalMdFiles(
-    path.join(process.cwd(), blogDirName)
+    path.join(process.cwd(), SITE_BLOG_LOCAL_STORAGE_DIR)
   );
 
   // Process each markdown file's directory
@@ -55,7 +24,7 @@ export async function copyPostImages() {
         const sourcePath = path.join(mdDir, file);
 
         const relativePath = path.relative(
-          path.join(process.cwd(), blogDirName),
+          path.join(process.cwd(), SITE_BLOG_LOCAL_STORAGE_DIR),
           mdDir
         );
         const targetDir = path.join(process.cwd(), 'public', relativePath);
@@ -82,8 +51,4 @@ export async function copyPostImages() {
       }
     });
   });
-}
-
-if (require.main === module) {
-  copyPostImages();
 }

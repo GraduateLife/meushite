@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+/* eslint-disable no-console */
 
 // Create an echo object with log, warn, and error methods
 export const echo = {

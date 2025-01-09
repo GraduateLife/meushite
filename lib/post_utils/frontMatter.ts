@@ -1,19 +1,20 @@
 // scripts/update-frontmatter.ts
 
+import { env } from '@/env';
 import { myName } from '@/whoami/links';
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
 import { echo, notice } from '../echo';
-import { slugToTitle } from '../utils';
+import { filepathToSlug, slugToTitle } from '../utils';
 import { cleanMarkdown } from './cleaner';
-import { getAllLocalMdFiles, getPostTitleFromLocalPath } from './retriever';
+import { getAllLocalMdFiles } from './local-fetcher';
 import { blogDirName } from './settings';
 
 const postsDirectory = path.join(process.cwd(), blogDirName);
 
 function generateSlug(relativePath: string): string {
-  return getPostTitleFromLocalPath(relativePath);
+  return filepathToSlug(relativePath);
 }
 
 function generateTitle(slug: string): string {
@@ -121,7 +122,10 @@ export async function updateFrontmatter() {
 }
 
 export async function updateFolderName() {
-  const contentDirectory = path.join(process.cwd(), 'content');
+  const contentDirectory = path.join(
+    process.cwd(),
+    env.SITE_BLOG_LOCAL_STORAGE_DIR
+  );
   const folders = fs
     .readdirSync(contentDirectory, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())

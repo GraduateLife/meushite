@@ -1,7 +1,8 @@
 import { Badge } from '@/components/ui/badge';
 import { GlareCard } from '@/components/ui/glare-card';
 import { cleanMarkdown } from '@/lib/post_utils/cleaner';
-import { convertAllPostsFromLocal } from '@/lib/post_utils/retriever';
+import { getAllPostsFromLocal } from '@/lib/post_utils/local-fetcher';
+
 import { globalTitleSuffix } from '@/whoami/links';
 import { IconCrown, IconTags } from '@tabler/icons-react';
 import { Metadata } from 'next';
@@ -30,7 +31,7 @@ export const revalidate = 900; //seconds
 
 export default async function BlogIndex() {
   // const category = (await searchParams).category;
-  const posts = await convertAllPostsFromLocal();
+  const posts = await getAllPostsFromLocal();
   // const filteredPosts =
   //   category === undefined
   //     ? posts

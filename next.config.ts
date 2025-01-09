@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: process.env.DOCKER_BUILD === 'true' ? 'standalone' : undefined,
+  output: process.env.SITE_BUILD_MODE === 'docker' ? 'standalone' : undefined,
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
   images: {
@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'raw.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'asset.iameddie.work',
       },
     ],
   },

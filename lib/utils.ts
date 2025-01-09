@@ -1,8 +1,13 @@
 import { type ClassValue, clsx } from 'clsx';
+import path from 'path';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function filepathToSlug(filepath: string) {
+  return path.basename(path.dirname(filepath));
 }
 
 export function slugToTitle(text: string): string {

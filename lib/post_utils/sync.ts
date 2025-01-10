@@ -9,7 +9,7 @@ async function syncAssociatedImages(mdFilePath: string): Promise<void> {
   const imageFiles = files.filter((file) =>
     /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file)
   );
-
+  echo.info(`hi? Syncing ${imageFiles.length} images from ${dirPath}`);
   for (const filePath of imageFiles) {
     const exists = await hasObjectInBucket(filePath);
 

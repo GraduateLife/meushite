@@ -22,7 +22,7 @@ export async function getAllLocalMdFiles(dir: string): Promise<string[]> {
   }
   return files;
 }
-
+// 123
 export async function getOnePostFromLocalBySlug(slug: string): Promise<Post> {
   const thePath = path.join(
     process.cwd(),

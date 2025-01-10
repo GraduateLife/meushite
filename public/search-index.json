@@ -6,6 +6,12 @@
     "keywords": ["text", "markdown", "sample"]
   },
   {
+    "title": "Abcd",
+    "content": "I am here to test the synchronization feature\nA",
+    "slug": "abcd",
+    "keywords": []
+  },
+  {
     "title": "Use Git Hooks",
     "content": "in the last blog, I mentioned to use git hooks to format my code before commit.\nsurprisingly, it's not hard to do it.\nthe native way to use git hooks is to edit the `.git/hooks` directory, but it's not recommended since .git folder is ignored by git, it will cause troubles when other guys commit.\nso i use husky, this is a git hook tool specially for js users.\nAfter getting started, you can see the husky is working.\nby the way\nhusky doc mentions there is another useful tool called lint-staged, it will run the lint command for different file formats concurrently, but for my current project, i don't need it since I got over 99% code in typescript.\nExtra\nQ: I run my lint command as a part of build command, so why I need to use git hooks?\nA: because if eslint yells at build stage in your remote server, things become worse, am I right?",
     "slug": "use-git-hooks",

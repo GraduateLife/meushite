@@ -11,11 +11,11 @@ async function main() {
     .filter(Boolean);
 
   if (changedFiles.length === 0) {
-    console.log('No files to sync');
+    echo.info('No files to sync');
     return;
   }
 
-  console.log('Syncing files:', changedFiles);
+  echo.info(`Syncing files: ${changedFiles.join(', ')}`);
   await syncChangedPosts(changedFiles);
   echo.good('Synchronization complete!');
   process.exit(0);

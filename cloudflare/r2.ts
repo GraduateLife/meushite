@@ -61,6 +61,23 @@ export const hasObjectInBucket = async (
     return false;
   }
 };
+// recreate the object to mimic the update operation
+export const updateObject = async (
+  filePath: string,
+  key: string,
+  bucketName: string = env.CLOUDFLARE_R2_BUCKET_NAME
+) => {
+  // Check if object exists first
+  const exists = await hasObjectInBucket(key, bucketName);
+  if (!exists) {
+    echo.warn(`Object ${notice(key)} doesn't exist, creating new one`);
+  } else {
+    echo.info(`Updating existing object ${notice(key)}`);
+  }
+
+  // The uploadObject function handles the "update" operation
+  return await uploadObject(filePath, key, bucketName);
+};
 
 export const uploadObject = async (
   filePath: string,

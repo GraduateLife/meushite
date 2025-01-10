@@ -1,4 +1,9 @@
-import { hasObjectInBucket, uploadFolder, uploadObject } from '@/cloudflare/r2';
+import {
+  hasObjectInBucket,
+  updateObject,
+  uploadFolder,
+  uploadObject,
+} from '@/cloudflare/r2';
 import { echo, notice } from '@/lib/echo';
 import fs from 'fs';
 import path from 'path';
@@ -24,12 +29,15 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
   const markdownFiles = filesFromHook.filter((file) => file.endsWith('.md'));
 
   for (const filePath of markdownFiles) {
-    echo.info(`Checking if ${filePath} exists in bucket`);
     const exists = await hasObjectInBucket(filePath);
 
     if (!exists) {
       echo.info(`Creating post sync record: ${notice(filePath)}`);
       await uploadObject(filePath, filePath);
+      await syncAssociatedImages(filePath);
+    } else {
+      echo.info(`Updating post sync record: ${notice(filePath)}`);
+      await updateObject(filePath, filePath);
       await syncAssociatedImages(filePath);
     }
   }

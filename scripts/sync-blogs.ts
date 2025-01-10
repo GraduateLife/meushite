@@ -1,3 +1,4 @@
+import { echo } from '@/lib/echo';
 import { syncChangedPosts } from '@/lib/post_utils/sync';
 import { execSync } from 'child_process';
 
@@ -16,6 +17,11 @@ async function main() {
 
   console.log('Syncing files:', changedFiles);
   await syncChangedPosts(changedFiles);
+  echo.good('Synchronization complete!');
+  process.exit(0);
 }
 
-main().catch(console.error);
+main().catch((e) => {
+  echo.error('Error during synchronization: ' + e.message);
+  process.exit(1);
+});

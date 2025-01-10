@@ -24,10 +24,11 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
   const markdownFiles = filesFromHook.filter((file) => file.endsWith('.md'));
 
   for (const filePath of markdownFiles) {
+    echo.info(`Checking if ${filePath} exists in bucket`);
     const exists = await hasObjectInBucket(filePath);
 
     if (!exists) {
-      echo.info(`Syncing changed post: ${notice(filePath)}`);
+      echo.info(`Creating post sync record: ${notice(filePath)}`);
       await uploadObject(filePath, filePath);
       await syncAssociatedImages(filePath);
     }

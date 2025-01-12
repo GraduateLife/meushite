@@ -3,6 +3,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { BackToTop } from '@/sections/Common/BackToTop';
 import { NavbarSection } from '@/sections/Common/NavbarSection';
 import { domainUrl } from '@/whoami/links';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Metadata } from 'next';
 import { ViewTransitions } from 'next-view-transitions';
 import localFont from 'next/font/local';
@@ -23,8 +25,8 @@ const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
     <>
       <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
-        {/* <SpeedInsights /> */}
-        {/* <Analytics></Analytics> */}
+        <SpeedInsights />
+        <Analytics />
 
         <Toaster />
         <BackToTop />

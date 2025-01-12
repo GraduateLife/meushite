@@ -29,13 +29,17 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
   );
   for (const filePath of markdownFiles) {
     const exists = await hasObjectInBucket(filePath);
-
-    if (!exists) {
-      echo.info(`Creating post sync record: ${notice(filePath)}`);
-      await uploadObject(filePath, filePath);
-    } else {
-      echo.info(`Updating post sync record: ${notice(filePath)}`);
-      await updateObject(filePath, filePath, false);
+    try {
+      if (!exists) {
+        echo.info(`Creating post sync record: ${notice(filePath)}`);
+        await uploadObject(filePath, filePath);
+      } else {
+        echo.info(`Updating post sync record: ${notice(filePath)}`);
+        await updateObject(filePath, filePath, false);
+      }
+    } catch (error) {
+      echo.error(`Failed to upload ${filePath}: ${error}`);
+      return;
     }
   }
 }

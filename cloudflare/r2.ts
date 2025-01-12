@@ -89,7 +89,6 @@ export const uploadObject = async (
   bucketName: string = env.CLOUDFLARE_R2_BUCKET_NAME
 ) => {
   const contentType = mime.lookup(filePath) || 'application/octet-stream';
-
   echo.log(`Uploading ${filePath} to ${em(bucketName)}`);
 
   return await R2Storage.send(

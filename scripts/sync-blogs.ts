@@ -17,14 +17,17 @@ async function main() {
 
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
-    .filter(({ path }) => path.startsWith('content/'))
+    .filter(({ path }) =>
+      path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
+    )
     .flatMap(({ status, path }) => {
       if (status.startsWith('R')) {
         // For renamed files, the paths are in order: OLD_PATH\tNEW_PATH
-        const [oldPath, newPath] = path.split('\t');
-        echo.info(`Detected rename: ${oldPath} -> ${newPath}`);
+        const [Path1, Path2] = path.split('\t');
+        // Detected rename: content/abcd/Sockio24.png -> content/abcd/Sockio22.png
+        echo.info(`Detected rename: ${Path2} -> ${Path1}`);
         // Return the newPath since that's the file that actually exists
-        return [newPath];
+        return [Path1];
       }
       if (status === 'D') {
         echo.warn(`Skipping deleted file: ${path}`);

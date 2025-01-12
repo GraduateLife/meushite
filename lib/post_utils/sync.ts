@@ -35,7 +35,7 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
       await uploadObject(filePath, filePath);
     } else {
       echo.info(`Updating post sync record: ${notice(filePath)}`);
-      await updateObject(filePath, filePath);
+      await updateObject(filePath, filePath, false);
     }
   }
 }

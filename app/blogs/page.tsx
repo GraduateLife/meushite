@@ -43,7 +43,9 @@ export default async function BlogIndex() {
       {/* <BlogSidebar posts={posts} currentCategory={currentCategory} /> */}
       {/* Main content */}
       <main className="">
-        <h1 className="mb-8 text-3xl font-bold">All Blog Posts</h1>
+        <h1 className="mb-8 text-3xl font-bold">
+          All Blog Posts ({posts.length})
+        </h1>
 
         <div className="space-y-6">
           {/* {filteredPosts.length === 0 && (

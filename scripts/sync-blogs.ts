@@ -16,25 +16,20 @@ async function main() {
       return { status, path: filePaths.join('\t') };
     });
 
-  const toDelete: string[] = [];
+  const toDeleteBucketKeys: string[] = [];
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
-    .filter(({ path }) =>
-      path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
+    .filter(
+      ({ path, status }) =>
+        // Filter out deleted files first, then check the path
+        status !== 'D' && path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
     )
     .flatMap(({ status, path }) => {
       if (status.startsWith('R')) {
-        // For renamed files, the paths are in order: OLD_PATH\tNEW_PATH
         const [Path1, Path2] = path.split('\t');
-        // Detected rename: content/abcd/Sockio24.png -> content/abcd/Sockio22.png
         echo.info(`Detected rename: ${Path2} -> ${Path1}`);
-        // Return the newPath since that's the file that actually exists
-        toDelete.push(Path2);
+        toDeleteBucketKeys.push(Path2);
         return [Path1];
-      }
-      if (status === 'D') {
-        echo.warn(`Skipping deleted file: ${path}`);
-        return [];
       }
       return [path];
     });
@@ -48,9 +43,9 @@ async function main() {
     `Following files need to be uploaded to remote: ${changedFiles.join(', ')}`
   );
   echo.log(
-    `Following files need to be deleted from remote: ${toDelete.join(', ')}`
+    `Following files need to be deleted from remote: ${toDeleteBucketKeys.join(', ')}`
   );
-  await Promise.all(toDelete.map((key) => deleteObject(key)));
+  await Promise.all(toDeleteBucketKeys.map((key) => deleteObject(key)));
   await syncChangedPosts(changedFiles);
   if (env.SITE_BLOG_IMAGE_READ_MODE === 'remote') {
     await syncChangedImages(changedFiles);

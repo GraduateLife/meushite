@@ -5,29 +5,30 @@ import { syncChangedImages, syncChangedPosts } from '@/lib/post_utils/sync';
 import { execSync } from 'child_process';
 
 async function main() {
-  // Get the files changed in the commits that are about to be pushed with their status
-  const gitDiffOutput = execSync('git diff --name-status HEAD @{u}')
-    .toString()
-    .trim();
-  console.log('Git diff output:', gitDiffOutput); // Debug log
+  // Get all changes including untracked files
+  const gitDiffOutput = execSync('git status --porcelain').toString().trim();
+  console.log('Git status output:', gitDiffOutput); // Debug log
 
   const changedFilesWithStatus = gitDiffOutput
     .split('\n')
     .filter(Boolean)
     .map((line) => {
-      const [status, ...filePaths] = line.split('\t');
-      return { status, path: filePaths.join('\t') };
+      // git status --porcelain output has 2 characters for status
+      // first character is staging status, second is working tree status
+      const status = line.slice(0, 2).trim();
+      const path = line.slice(3);
+      return { status, path };
     });
 
   console.log('Changed files with status:', changedFilesWithStatus); // Debug log
 
   const toDeleteBucketKeys: string[] = [];
-  // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
     .filter(
       ({ path, status }) =>
-        // Filter out deleted files first, then check the path
-        status !== 'D' && path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
+        // Filter out deleted files (status starting with D)
+        !status.startsWith('D') &&
+        path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
     )
     .flatMap(({ status, path }) => {
       if (status.startsWith('R')) {

@@ -9,7 +9,19 @@ async function main() {
     .toString()
     .trim()
     .split('\n')
-    .filter(Boolean);
+    .filter(Boolean)
+    // Only include files from content folder
+    .filter((file) => file.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/'))
+    // Filter out deleted files by checking if they exist
+    .filter((file) => {
+      try {
+        execSync(`test -f ${file}`);
+        return true;
+      } catch {
+        echo.warn(`Skipping deleted file: ${file}`);
+        return false;
+      }
+    });
 
   if (changedFiles.length === 0) {
     echo.info('No files to sync');

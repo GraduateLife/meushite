@@ -7,7 +7,7 @@ export async function syncChangedImages(
   const imageFiles = filesFromHook.filter((file) =>
     /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(file)
   );
-  echo.log('The following files will be synced:' + imageFiles.join(', '));
+  echo.log('The following image files will be synced:' + imageFiles.join(', '));
   for (const filePath of imageFiles) {
     const exists = await hasObjectInBucket(filePath);
     if (!exists) {
@@ -22,7 +22,9 @@ export async function syncChangedImages(
 
 export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
   const markdownFiles = filesFromHook.filter((file) => file.endsWith('.md'));
-  echo.log('The following files will be synced:' + markdownFiles.join(', '));
+  echo.log(
+    'The following markdown files will be synced:' + markdownFiles.join(', ')
+  );
   for (const filePath of markdownFiles) {
     const exists = await hasObjectInBucket(filePath);
 

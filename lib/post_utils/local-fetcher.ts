@@ -49,11 +49,13 @@ async function convertOnePostFromLocalPath(fullPath: string): Promise<Post> {
     ? `${setImageMapping(fullPath)}/${data.coverImage.slice(2)}`
     : data.coverImage;
 
-  const processedContent = content.replace(
-    /\[([^\]]*)\]\(\.\/(.*?)\)/g,
-    (_, altText, imagePath) =>
-      `[${altText}](${setImageMapping(fullPath)}/${imagePath})`
-  );
+  const processedContent = content
+    .replace(
+      /\[([^\]]*)\]\(\.\/(.*?)\)/g,
+      (_, altText, imagePath) =>
+        `[${altText}](${setImageMapping(fullPath)}/${imagePath})`
+    )
+    .replace('[toc]', '## table of contents');
 
   return {
     title: data.title,

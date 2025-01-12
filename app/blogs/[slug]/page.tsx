@@ -4,8 +4,8 @@ import {
   getAllPostsFromLocal,
   getOnePostFromLocalBySlug,
 } from '@/lib/post_utils/local-fetcher';
-import { markdownToHtml } from '@/lib/post_utils/md-parser';
 import { generatePostMetadata } from '@/lib/post_utils/settings';
+import { MdRenderer } from '@/sections/Blogs/Renderer';
 
 import { DisableViewTransitions } from '@/sections/Common/DisableViewTransitions';
 import {
@@ -50,7 +50,6 @@ export default async function Post({
 }: UrlType<{ slug: string }, undefined>) {
   const slug = (await params).slug;
   const post = await getPost(slug);
-  const contentHtml = await markdownToHtml(post.content);
 
   // Fetch navigation data here instead of in the NavigationButtons component
   const allPosts = await getAllPostsFromLocal();
@@ -108,9 +107,7 @@ export default async function Post({
             )}
           </div>
         </div>
-        <article className="prose prose-slate dark:prose-invert mx-auto">
-          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-        </article>
+        <MdRenderer content={post.content} />
 
         {/* Pass the pre-fetched data to a non-async NavigationButtons */}
         <NavigationButtons prevPost={prevPost} nextPost={nextPost} />

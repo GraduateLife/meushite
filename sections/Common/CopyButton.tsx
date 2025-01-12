@@ -1,4 +1,5 @@
 'use client';
+import { ButtonProps } from '@/components/ui/button';
 import { ConfettiButton } from '@/components/ui/confetti';
 import { useToast } from '@/hooks/use-toast';
 import { cn } from '@/lib/utils';
@@ -7,10 +8,18 @@ import { useState } from 'react';
 import { useCopyToClipboard } from 'react-use';
 type CopyToClipboardProps = {
   text: string;
-  className?: string;
-};
+  containerClassName?: string;
+  copyIconClassName?: string;
+  checkIconClassName?: string;
+} & ButtonProps;
 
-export function CopyButton({ text, className }: CopyToClipboardProps) {
+export function CopyButton({
+  text,
+  containerClassName,
+  copyIconClassName,
+  checkIconClassName,
+  ...props
+}: CopyToClipboardProps) {
   const [, copyToClipboard] = useCopyToClipboard();
   const [copied, setCopied] = useState(false);
   const { toast } = useToast();
@@ -31,12 +40,12 @@ export function CopyButton({ text, className }: CopyToClipboardProps) {
   };
 
   return (
-    <div className={cn('relative', className)} onClick={handleCopy}>
-      <ConfettiButton variant="ghost">
+    <div className={cn('relative', containerClassName)} onClick={handleCopy}>
+      <ConfettiButton variant="ghost" {...props}>
         {copied ? (
-          <IconCheck className="h-6 w-6 text-green-500" />
+          <IconCheck className={cn('h-6 w-6', checkIconClassName)} />
         ) : (
-          <IconCopy className="h-6 w-6 text-black dark:text-white" />
+          <IconCopy className={cn('h-6 w-6', copyIconClassName)} />
         )}
       </ConfettiButton>
     </div>

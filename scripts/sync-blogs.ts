@@ -1,5 +1,6 @@
+import { env } from '@/env';
 import { echo } from '@/lib/echo';
-import { syncChangedPosts } from '@/lib/post_utils/sync';
+import { syncChangedImages, syncChangedPosts } from '@/lib/post_utils/sync';
 import { execSync } from 'child_process';
 
 async function main() {
@@ -15,8 +16,11 @@ async function main() {
     return;
   }
 
-  echo.info(`Syncing files: ${changedFiles.join(', ')}`);
+  echo.info(`following files are changed: ${changedFiles.join(', ')}`);
   await syncChangedPosts(changedFiles);
+  if (env.SITE_BLOG_IMAGE_READ_MODE === 'remote') {
+    await syncChangedImages(changedFiles);
+  }
   echo.good('Synchronization complete!');
   process.exit(0);
 }

@@ -1,7 +1,7 @@
 'use client';
 import Marquee from '@/components/ui/marquee';
-import { into } from '@/lib/into';
-import { cn } from '@/lib/utils';
+
+import { ArrayInto, cn } from '@/lib/utils';
 import { Skill, skills } from '@/whoami/skills';
 import {
   Tooltip,
@@ -11,7 +11,7 @@ import {
   TooltipTrigger,
 } from '@radix-ui/react-tooltip';
 import Image from 'next/image';
-const [firstRow, secondRow, thirdRow] = into<Skill>(3)(skills);
+const [firstRow, secondRow, thirdRow] = ArrayInto<Skill>(3)(skills);
 
 const SkillCard = ({
   imgUrl,

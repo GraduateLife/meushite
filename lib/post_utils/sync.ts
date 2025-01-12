@@ -1,5 +1,6 @@
 import { hasObjectInBucket, updateObject, uploadObject } from '@/cloudflare/r2';
 import { echo, notice } from '@/lib/echo';
+import { isTimeoutError, withRetry } from '../utils';
 
 export async function syncChangedImages(
   filesFromHook: string[]
@@ -15,10 +16,16 @@ export async function syncChangedImages(
     try {
       if (!exists) {
         echo.log(`Creating post image sync record: ${notice(filePath)}`);
-        await uploadObject(filePath, filePath);
+        await withRetry(
+          async () => await uploadObject(filePath, filePath),
+          isTimeoutError
+        );
       } else {
         echo.log(`Updating post image sync record: ${notice(filePath)}`);
-        await updateObject(filePath, filePath);
+        await withRetry(
+          async () => await updateObject(filePath, filePath, false),
+          isTimeoutError
+        );
         echo.good(
           `successfully updated post image sync record: ${notice(filePath)}`
         );
@@ -40,10 +47,16 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
     try {
       if (!exists) {
         echo.info(`Creating post sync record: ${notice(filePath)}`);
-        await uploadObject(filePath, filePath);
+        await withRetry(
+          async () => await uploadObject(filePath, filePath),
+          isTimeoutError
+        );
       } else {
         echo.info(`Updating post sync record: ${notice(filePath)}`);
-        await updateObject(filePath, filePath, false);
+        await withRetry(
+          async () => await updateObject(filePath, filePath, false),
+          isTimeoutError
+        );
         echo.good(`successfully updated post sync record: ${notice(filePath)}`);
       }
     } catch (error) {

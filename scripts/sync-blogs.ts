@@ -21,17 +21,14 @@ async function main() {
   const toDeleteBucketKeys: string[] = [];
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
-    .filter(({ path, status }) => {
+    .filter(({ path }) => {
       // Check if file exists before including it
       const fileExists = fs.existsSync(path);
       if (!fileExists) {
         echo.warn(`File ${path} no longer exists, skipping`);
         return false;
       }
-      return (
-        !status.startsWith('D') &&
-        path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
-      );
+      return path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/');
     })
     .flatMap(({ status, path }) => {
       if (status.startsWith('R')) {

@@ -243,3 +243,5 @@ export const uploadFolder = async (
   return true;
 };
 ```
+
+I want to sync my blog data to r2 every time I push to github, we talk about this later.

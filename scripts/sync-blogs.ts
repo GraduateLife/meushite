@@ -1,3 +1,4 @@
+import { deleteObject } from '@/cloudflare/r2';
 import { env } from '@/env';
 import { echo } from '@/lib/echo';
 import { syncChangedImages, syncChangedPosts } from '@/lib/post_utils/sync';
@@ -15,6 +16,7 @@ async function main() {
       return { status, path: filePaths.join('\t') };
     });
 
+  const toDelete: string[] = [];
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
     .filter(({ path }) =>
@@ -27,6 +29,7 @@ async function main() {
         // Detected rename: content/abcd/Sockio24.png -> content/abcd/Sockio22.png
         echo.info(`Detected rename: ${Path2} -> ${Path1}`);
         // Return the newPath since that's the file that actually exists
+        toDelete.push(Path2);
         return [Path1];
       }
       if (status === 'D') {
@@ -42,6 +45,8 @@ async function main() {
   }
 
   echo.info(`following files are changed: ${changedFiles.join(', ')}`);
+  echo.info(`following files are deleted: ${toDelete.join(', ')}`);
+  await Promise.all(toDelete.map((key) => deleteObject(key)));
   await syncChangedPosts(changedFiles);
   if (env.SITE_BLOG_IMAGE_READ_MODE === 'remote') {
     await syncChangedImages(changedFiles);

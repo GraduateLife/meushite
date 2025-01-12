@@ -1,6 +1,7 @@
 import { env } from '@/env';
 import { echo, em, notice } from '@/lib/echo';
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   ListBucketsCommand,
   ListObjectsV2Command,
@@ -184,4 +185,26 @@ export const uploadFolder = async (
 
   await Promise.all(uploads);
   return true;
+};
+
+export const deleteObject = async (
+  key: string,
+  bucketName: string = env.CLOUDFLARE_R2_BUCKET_NAME
+) => {
+  echo.info(`Deleting object ${notice(key)} from bucket ${em(bucketName)}`);
+  try {
+    await R2Storage.send(
+      new DeleteObjectCommand({
+        Bucket: bucketName,
+        Key: key,
+      })
+    );
+    echo.good(
+      `Successfully deleted ${notice(key)} from bucket ${em(bucketName)}`
+    );
+    return true;
+  } catch (error) {
+    echo.error(`Failed to delete ${notice(key)} from bucket ${em(bucketName)}`);
+    throw error;
+  }
 };

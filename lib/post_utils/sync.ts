@@ -25,9 +25,6 @@ export async function syncChangedImages(
       }
     } catch (error) {
       echo.error(`Failed to upload ${filePath}: ${error}`);
-      echo.info(
-        `Corresponding bucket object ${filePath} will not be deleted because bucket is designed to store all versions`
-      );
       return;
     }
   }
@@ -51,9 +48,6 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
       }
     } catch (error) {
       echo.error(`Failed to upload ${filePath}: ${error}`);
-      echo.info(
-        `Corresponding bucket object ${filePath} will not be deleted because bucket is designed to store all versions`
-      );
       return;
     }
   }

@@ -3,6 +3,7 @@ import { env } from '@/env';
 import { echo } from '@/lib/echo';
 import { syncChangedImages, syncChangedPosts } from '@/lib/post_utils/sync';
 import { execSync } from 'child_process';
+import fs from 'fs';
 
 async function main() {
   // Get the files changed in the commits that are about to be pushed with their status
@@ -20,11 +21,18 @@ async function main() {
   const toDeleteBucketKeys: string[] = [];
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)
   const changedFiles = changedFilesWithStatus
-    .filter(
-      ({ path, status }) =>
-        // Filter out deleted files first, then check the path
-        status !== 'D' && path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
-    )
+    .filter(({ path, status }) => {
+      // Check if file exists before including it
+      const fileExists = fs.existsSync(path);
+      if (!fileExists) {
+        echo.warn(`File ${path} no longer exists, skipping`);
+        return false;
+      }
+      return (
+        !status.startsWith('D') &&
+        path.startsWith(env.SITE_BLOG_LOCAL_STORAGE_DIR + '/')
+      );
+    })
     .flatMap(({ status, path }) => {
       if (status.startsWith('R')) {
         const [Path1, Path2] = path.split('\t');

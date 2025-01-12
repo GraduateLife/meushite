@@ -19,6 +19,9 @@ export async function syncChangedImages(
       } else {
         echo.log(`Updating post image sync record: ${notice(filePath)}`);
         await updateObject(filePath, filePath);
+        echo.good(
+          `successfully updated post image sync record: ${notice(filePath)}`
+        );
       }
     } catch (error) {
       echo.error(`Failed to upload ${filePath}: ${error}`);
@@ -44,6 +47,7 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
       } else {
         echo.info(`Updating post sync record: ${notice(filePath)}`);
         await updateObject(filePath, filePath, false);
+        echo.good(`successfully updated post sync record: ${notice(filePath)}`);
       }
     } catch (error) {
       echo.error(`Failed to upload ${filePath}: ${error}`);

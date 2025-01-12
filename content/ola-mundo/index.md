@@ -68,7 +68,7 @@ def greet():
 
 ![Image Example](./Sockio.png)
 
-### will I be attacked?
+### Will I be attacked?
 
 <script>
   alert('Hello World!');

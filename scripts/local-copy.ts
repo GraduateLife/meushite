@@ -4,6 +4,9 @@ import { copyPostImagesToPublic } from '@/lib/post_utils/local-copy';
 
 if (require.main === module) {
   if (env.SITE_BLOG_IMAGE_READ_MODE === 'local') {
+    echo.info(
+      `SITE_BLOG_IMAGE_READ_MODE was set to ${env.SITE_BLOG_IMAGE_READ_MODE}, copying images to public folder`
+    );
     copyPostImagesToPublic();
   } else {
     echo.info(

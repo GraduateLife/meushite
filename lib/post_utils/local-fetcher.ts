@@ -45,12 +45,10 @@ export async function getOnePostFromLocalBySlug(slug: string): Promise<Post> {
 async function convertOnePostFromLocalPath(fullPath: string): Promise<Post> {
   const rawPost = await fs.promises.readFile(fullPath, 'utf8');
   const { data, content } = matter(rawPost);
-  const processedData = {
-    ...data,
-    coverImage: data.coverImage
-      ? setImageMapping(fullPath) + data.coverImage
-      : undefined,
-  } as Post;
+  const coverImage = data.coverImage?.startsWith('./')
+    ? `${setImageMapping(fullPath)}/${data.coverImage.slice(2)}`
+    : data.coverImage;
+
   const processedContent = content.replace(
     /\[([^\]]*)\]\(\.\/(.*?)\)/g,
     (_, altText, imagePath) =>
@@ -58,15 +56,15 @@ async function convertOnePostFromLocalPath(fullPath: string): Promise<Post> {
   );
 
   return {
-    title: processedData.title,
+    title: data.title,
     content: processedContent,
-    slug: processedData.slug,
-    timestamp: processedData.timestamp,
-    top: processedData.top,
-    description: processedData.description,
-    keywords: processedData.keywords,
-    author: processedData.author,
-    coverImage: processedData.coverImage ?? undefined,
+    slug: data.slug,
+    timestamp: data.timestamp,
+    top: data.top,
+    description: data.description,
+    keywords: data.keywords,
+    author: data.author,
+    coverImage: coverImage ?? undefined,
   };
 }
 

@@ -17,7 +17,6 @@ import {
 import { IconArrowLeft, IconArrowRight, IconCrown } from '@tabler/icons-react';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
-
 export const revalidate = 900; //seconds
 
 export async function generateStaticParams() {

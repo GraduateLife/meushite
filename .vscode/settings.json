@@ -15,5 +15,6 @@
   "npm.packageManager": "pnpm",
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
-  }
+  },
+  "json.schemaDownload.enable": false
 }

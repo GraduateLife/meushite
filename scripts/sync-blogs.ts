@@ -6,15 +6,20 @@ import { execSync } from 'child_process';
 
 async function main() {
   // Get the files changed in the commits that are about to be pushed with their status
-  const changedFilesWithStatus = execSync('git diff --name-status HEAD @{u}')
+  const gitDiffOutput = execSync('git diff --name-status HEAD @{u}')
     .toString()
-    .trim()
+    .trim();
+  console.log('Git diff output:', gitDiffOutput); // Debug log
+
+  const changedFilesWithStatus = gitDiffOutput
     .split('\n')
     .filter(Boolean)
     .map((line) => {
       const [status, ...filePaths] = line.split('\t');
       return { status, path: filePaths.join('\t') };
     });
+
+  console.log('Changed files with status:', changedFilesWithStatus); // Debug log
 
   const toDeleteBucketKeys: string[] = [];
   // Handle different types of changes (M: modified, A: added, R: renamed, D: deleted)

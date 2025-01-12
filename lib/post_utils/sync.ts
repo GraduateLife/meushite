@@ -12,12 +12,20 @@ export async function syncChangedImages(
   );
   for (const filePath of imageFiles) {
     const exists = await hasObjectInBucket(filePath);
-    if (!exists) {
-      echo.log(`Creating post image sync record: ${notice(filePath)}`);
-      await uploadObject(filePath, filePath);
-    } else {
-      echo.log(`Updating post image sync record: ${notice(filePath)}`);
-      await updateObject(filePath, filePath);
+    try {
+      if (!exists) {
+        echo.log(`Creating post image sync record: ${notice(filePath)}`);
+        await uploadObject(filePath, filePath);
+      } else {
+        echo.log(`Updating post image sync record: ${notice(filePath)}`);
+        await updateObject(filePath, filePath);
+      }
+    } catch (error) {
+      echo.error(`Failed to upload ${filePath}: ${error}`);
+      echo.info(
+        `Skipping uploading ${filePath} because bucket is designed to store all versions`
+      );
+      return;
     }
   }
 }
@@ -39,6 +47,9 @@ export async function syncChangedPosts(filesFromHook: string[]): Promise<void> {
       }
     } catch (error) {
       echo.error(`Failed to upload ${filePath}: ${error}`);
+      echo.info(
+        `Skipping uploading ${filePath} because bucket is designed to store all versions`
+      );
       return;
     }
   }

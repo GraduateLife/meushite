@@ -87,7 +87,7 @@ export const uploadObject = async (
 ) => {
   const contentType = mime.lookup(filePath) || 'application/octet-stream';
 
-  echo.log(`Uploading ${filePath} to ${bucketName}`);
+  echo.log(`Uploading ${filePath} to ${em(bucketName)}`);
 
   return await R2Storage.send(
     new PutObjectCommand({

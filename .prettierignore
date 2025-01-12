@@ -7,7 +7,7 @@ eslint.config.mjs
 out/
 build/
 dist/
-
+content/
 # Dependencies
 node_modules/
 

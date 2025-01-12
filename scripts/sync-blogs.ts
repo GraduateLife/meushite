@@ -44,8 +44,12 @@ async function main() {
     return;
   }
 
-  echo.info(`following files are changed: ${changedFiles.join(', ')}`);
-  echo.info(`following files are deleted: ${toDelete.join(', ')}`);
+  echo.log(
+    `Following files need to be uploaded to remote: ${changedFiles.join(', ')}`
+  );
+  echo.log(
+    `Following files need to be deleted from remote: ${toDelete.join(', ')}`
+  );
   await Promise.all(toDelete.map((key) => deleteObject(key)));
   await syncChangedPosts(changedFiles);
   if (env.SITE_BLOG_IMAGE_READ_MODE === 'remote') {

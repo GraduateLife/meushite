@@ -45,3 +45,25 @@ git config --global http.proxy '<http|socks5>://<hostname>:<port>'
 # see the config is set or not
 git config --global --get http.proxy
 ```
+
+## fix drizzle orm generate error
+
+```bash
+pnpx drizzle-kit generate
+
+# cli shows this error
+Please install latest version of drizzle-orm
+```
+
+[issue](https://github.com/drizzle-team/drizzle-orm/issues/2699)
+
+in short, pnpm pick wrong version of drizzle-orm even if we have the latest version in `package.json`.
+
+solution:
+
+```bash
+npx drizzle-kit generate
+
+# or
+pnpm exec drizzle-kit generate
+```
